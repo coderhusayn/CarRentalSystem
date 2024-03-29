@@ -31,4 +31,4 @@ elif choice == 'update':
     with open('customer.txt', 'w') as customer_file:
         for line in accounts:
             customer_file.write(f'{line}')
-            # print(line.split(';'))
+            # print(line.split(';')
