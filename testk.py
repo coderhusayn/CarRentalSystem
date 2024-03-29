@@ -17,7 +17,6 @@ elif choice == 'update':
             if data[1] == "Hussain Rana": #Check for inputted name
                 data[1] = "Pavin Raj" #Updated Name
                 accounts[index] = ';'.join(data)
-                print(accounts)
             else:
                 nameCheck += 1
 
@@ -31,4 +30,4 @@ elif choice == 'update':
     with open('customer.txt', 'w') as customer_file:
         for line in accounts:
             customer_file.write(f'{line}')
-            # print(line.split(';')
+            # print(line.split(';'))
