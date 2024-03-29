@@ -31,3 +31,5 @@ elif choice == 'update':
         for line in accounts:
             customer_file.write(f'{line}')
             # print(line.split(';'))
+
+#Testing 2
