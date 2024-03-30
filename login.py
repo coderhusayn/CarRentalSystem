@@ -12,7 +12,7 @@ def login():
         for line in loginDetail:
             data = line.split(';')
             del data[-1]
-            print(data) # Check how the data is listed
+            # print(data) # Check how the data is listed
 
             if userName == data[0] and userPass == data[1]:
                 print(f'\nWelcome, {data[3].title()}!')
