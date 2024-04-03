@@ -24,7 +24,7 @@ def CarSerStaff():
     ERR_FILE_NO_PERM = '\n\033[0;31m\033[1mError: You do not have permission to access the .txt file.\033[0m\n'
 
     while True:
-        option = str(input('>>> ')).lower()
+        option = input('>>> ').lower()
 
         if option not in [CSS_REGISTER, CSS_UPDATE, CSS_VIEW, CSS_PROFILE, CSS_LOGOUT]:
             print(f'\033[0;31m\033[1mError: Please enter {CSS_REGISTER}, {CSS_UPDATE}, {CSS_VIEW}, {CSS_PROFILE}, or {CSS_LOGOUT} as an option.\033[0m')
@@ -62,7 +62,7 @@ def CarSerStaff():
 
 
                 def CarRegister():
-                    print('\033[1mCar Information\033[0m\n')
+                    print('\033[1mCar Details\033[0m\n')
 
                     registration_no = input('Registration Number: ').upper()                # string [KV 2926 E]
                     manufacturer = input('Manufacturer: ').upper()                          # string [PERODUA]
@@ -149,7 +149,7 @@ def CarSerStaff():
                     CSS_UPDATE_RTLAVL = '5'
 
                     while True:
-                        option = str(input('>>> ')).lower()
+                        option = input('>>> ').lower()
 
                         if option not in [CSS_UPDATE_INSNUM, CSS_UPDATE_INSDTE, CSS_UPDATE_TAXDTE, CSS_UPDATE_RTLDAY, CSS_UPDATE_RTLAVL, CSS_BACK]:
                             print(f'\033[0;31m\033[1mError: Please enter {CSS_UPDATE_INSNUM}, {CSS_UPDATE_INSDTE}, {CSS_UPDATE_TAXDTE}, {CSS_UPDATE_RTLDAY}, {CSS_UPDATE_RTLAVL}, or {CSS_BACK} as an option.\033[0m')
@@ -191,7 +191,7 @@ def CarSerStaff():
                             # print(result) # For debugging purpose only
 
                             while True:
-                                option = str(input('>>> ')).upper()
+                                option = input('>>> ').upper()
 
                                 if option in result:
                                     os.system('cls')
@@ -220,14 +220,14 @@ def CarSerStaff():
 
                             # [Optional] Check if file has no entry (but it doesnt matter because file will always have at-least 1 entry. If file doesnt have any entry that means file does not exist and FileNotFoundError will occur.)
                             for i, line in enumerate(file, start=1):
-                                data = '{:<15} {:<15} {:<15} {:<6} {:<3} {:<12} {:<12} {:<12} {:<12} {:<8} {:<15}'.format(*line.strip().split(';'))
+                                data = '{:<15} {:<16} {:<14} {:<6} {:<3} {:<12} {:<12} {:<12} {:<12} {:<8} {:<15}'.format(*line.strip().split(';'))
                                 print(f'{str(i) + '.' :<4} {data}')
 
                             print('\n', end='')
                             file.close()
 
                             while True:
-                                option = str(input('>>> ')).lower()
+                                option = input('>>> ').lower()
                                 if option not in CSS_BACK:
                                     print(f'\033[0;31m\033[1mError: Please enter {CSS_BACK} as an option.\033[0m')
                                 elif option == CSS_BACK:
