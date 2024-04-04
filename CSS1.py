@@ -1,8 +1,8 @@
 def CSS1():
     mainMenu = '''\033[1mCar Rental System | Customer Detail            \033[0;31m[q] Logout\033[0m\n
-    [1] Register customer detail \033[0;31m[In Development]\033[0m
+    [1] Register customer detail
     [2] Update customer details
-    [3] View registered customers \033[0;31m[In Development]\033[0m
+    [3] View registered customers
     [4] Update own profile \033[0;31m[In Development]\033[0m
     
     Enter \033[1;32m1, 2, 3, 4\033[0m or \033[0;31mQ\033[0m to Logout\n'''
@@ -12,17 +12,57 @@ def CSS1():
     registerCustomer = '1'
     updateCustomer = '2'
     viewCustomer = '3'
-    customerProfile = '4'
+    ownProfile = '4'
     logout = 'q'
 
     CSS1_BACK = 'b'
 
     while True:
         choice = input('>>> ').lower()
-        if choice not in [registerCustomer, updateCustomer, viewCustomer, customerProfile, logout]:
-            print(f'\033[0;31m\033[1mError: Please enter {registerCustomer}, {updateCustomer}, {viewCustomer}, {customerProfile} or {logout} as an option.\033[0m')
+        if choice not in [registerCustomer, updateCustomer, viewCustomer, ownProfile, logout]:
+            print(f'\033[0;31m\033[1mError: Please enter {registerCustomer}, {updateCustomer}, {viewCustomer}, {ownProfile} or {logout} as an option.\033[0m')
         else:
-            if choice == updateCustomer:
+            if choice == registerCustomer:
+                print("\n\033[1mEnter '\033[1;31mQ\033[0m' \033[1mto restart or quit.\n\033[0m")
+                custName = input('Enter customer\'s name: ')
+                if custName.lower() == 'q':
+                    print('\033[1;31mAction terminated, going back to menu\033[0m')
+                    CSS1()
+                custID = input("Enter customer's IC/Passport: ")
+                if custID.lower() == 'q':
+                    print('\033[1;31mAction terminated, going back to menu\033[0m')
+                    CSS1()
+                custLicense = input('Enter customer\'s license number: ')
+                if custLicense.lower() == 'q':
+                    print('\033[1;31mAction terminated, going back to menu\033[0m')
+                    CSS1()
+                custAddress = input("Enter customer's address: ")
+                if custAddress.lower() == 'q':
+                    print('\033[1;31mAction terminated, going back to menu\033[0m')
+                    CSS1()
+                custContact = input("Enter customer's contact number: ")
+                if custContact.lower() == 'q':
+                    print('\033[1;31mAction terminated, going back to menu\033[0m')
+                    CSS1()
+                date = input("Insert today's date \033[0;31m(DD-MM-YYYY)\033[0m: ")
+                if date.lower() == 'q':
+                    print('\033[1;31mAction terminated, going back to menu\033[0m')
+                    CSS1()
+
+                with open('customer.txt') as customer_file:
+                    accounts = customer_file.readlines()
+
+                # Modify data
+                newID = len(accounts) + 1000001
+
+                with open('customer.txt', 'a') as customer_file:
+                    customer_file.write(f'\nC{newID};{custName};{custID};{custLicense};{custAddress};{custContact};{date}')
+                print("\n\033[1;32mAccount succesfully created!\033[0m\n")
+                
+                CSS1()
+                
+            
+            elif choice == updateCustomer:
                 def updateCustomer():
                     def changeName():
                         while True:
@@ -270,7 +310,31 @@ def CSS1():
                         
                 updateCustomer()
                 
+            elif choice == viewCustomer:
+                with open('customer.txt') as customer_file:
+                    accounts = customer_file.readlines()
+
+                print(f'\033[1mList of Registered Customers')
+
+                # Find maximum widths for each column
+                max_widths = [10, 25, 15, 8, 40, 14, 10]  # Default widths
+                for line in accounts:
+                    fields = line.strip().split(';')
+                    for i, field in enumerate(fields):
+                        max_widths[i] = max(max_widths[i], len(field))
+
+                # Format the data using the calculated widths
+                for i, line in enumerate(accounts, start=1):
+                    data = [field.strip().ljust(width) for field, width in zip(line.strip().split(';'), max_widths)]
+                    print(f'{str(i) + "." :<4} {"   ".join(data)}')
                 
+                while True:
+                    exitMenu = input("\nEnter \'\033[1;31mX\033[0m\' \033[1mto go back to main menu.\033[0m\n>>> ")
+                    if exitMenu.lower() == 'x':
+                        CSS1()
+
+            elif choice == ownProfile:
+                return
 
             elif choice == logout:
                 raise SystemExit("\033[1;32mYou have logged out\033[0m")
