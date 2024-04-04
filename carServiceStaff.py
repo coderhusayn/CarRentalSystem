@@ -165,7 +165,7 @@ def CarSerStaff():
                                     details = data[i].split(';')
                                     # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current insurance policy number for {export_registration_no} is {details[6]}.\nEnter a new value to change:\033[0m')
+                                        print(f'\033[1mThe current Insurance Policy Number for {export_registration_no} is {details[6]}.\033[0m\n\nEnter a new value to change:')
                                         newInsNum = input('>>> ').upper()
 
                                         details[6] = newInsNum
@@ -188,7 +188,7 @@ def CarSerStaff():
                                     details = data[i].split(';')
                                     # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current insurance policy expiry date for {export_registration_no} is {details[7]}.\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):\033[0m')
+                                        print(f'\033[1mThe current Insurance Policy Expiry Date for {export_registration_no} is {details[7]}.\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
                                         newInsDte = InputDate('>>> ')
 
                                         details[7] = newInsDte
@@ -211,7 +211,7 @@ def CarSerStaff():
                                     details = data[i].split(';')
                                     # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current road tax expiry date for {export_registration_no} is {details[8]}.\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):\033[0m')
+                                        print(f'\033[1mThe current Road Tax Expiry Date for {export_registration_no} is {details[8]}.\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
                                         newTaxDte = InputDate('>>> ')
 
                                         details[8] = newTaxDte
