@@ -20,8 +20,36 @@ def CarSerStaff():
 
     CSS_BACK = 'b'
 
+    START_YEAR = 2010
+    END_YEAR = 2024
+
+    MIN_CAPACITY = 1
+    MAX_CAPACITY = 11
+
     ERR_FILE_NOT_FOUND = '\n\033[0;31m\033[1mError: The .txt file does not exist.\033[0m\n'
     ERR_FILE_NO_PERM = '\n\033[0;31m\033[1mError: You do not have permission to access the .txt file.\033[0m\n'
+
+    def InputDate(prompt):
+        while True:
+            try:
+                date = input(prompt)
+                day, month, year = date.split('-')
+
+                if len(day) != 2 or not day.isdigit() or int(day) < 1 or int(day) > 31:
+                    print('\033[0;31m\033[1mError: Please enter a day between 01 and 31.\033[0m')
+                    continue
+                elif len(month) != 2 or not month.isdigit() or int(month) < 1 or int(month) > 12:
+                    print('\033[0;31m\033[1mError: Please enter a month between 01 and 12.\033[0m')
+                    continue
+                elif len(year) != 4 or not year.isdigit() or int(year) < START_YEAR or int(year) > END_YEAR:
+                    print(f'\033[0;31m\033[1mError: Please enter a four digit year between {START_YEAR} and {END_YEAR}.\033[0m')
+                    continue
+                else:
+                    break
+            except ValueError:
+                print('\033[0;31m\033[1mError: Please enter a date in the format of DD-MM-YYYY.\033[0m')
+        return date
+
 
     while True:
         option = input('>>> ').lower()
@@ -32,34 +60,6 @@ def CarSerStaff():
             # Option 1 - Register a new car
             if option == CSS_REGISTER:
                 os.system('cls')
-
-                START_YEAR = 2010
-                END_YEAR = 2024     # [Optional] Is it possible to import current date to get actual END_YEAR (more accurate)?
-
-                MIN_CAPACITY = 1
-                MAX_CAPACITY = 11
-
-                def InputDate(prompt):
-                    while True:
-                        try:
-                            date = input(prompt)
-                            day, month, year = date.split('-')
-
-                            if len(day) != 2 or not day.isdigit() or int(day) < 1 or int(day) > 31:
-                                print('\033[0;31m\033[1mError: Please enter a day between 01 and 31.\033[0m')
-                                continue
-                            elif len(month) != 2 or not month.isdigit() or int(month) < 1 or int(month) > 12:
-                                print('\033[0;31m\033[1mError: Please enter a month between 01 and 12.\033[0m')
-                                continue
-                            elif len(year) != 4 or not year.isdigit() or int(year) < START_YEAR or int(year) > END_YEAR:
-                                print(f'\033[0;31m\033[1mError: Please enter a four digit year between {START_YEAR} and {END_YEAR}.\033[0m')
-                                continue
-                            else:
-                                break
-                        except ValueError:
-                            print('\033[0;31m\033[1mError: Please enter a date in the format of DD-MM-YYYY.\033[0m')
-                    return date
-
 
                 def CarRegister():
                     print('\033[1mCar Details\033[0m\n')
@@ -133,9 +133,9 @@ def CarSerStaff():
                     pageCarUpdateOpt = f'''\033[1mUpdate Options for {export_registration_no}                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n
     \033[1mInsurance\033[0m
     [1] Policy Number
-    [2] Expiry Date \033[0;31m[In Development]\033[0m\n
+    [2] Expiry Date\n
     \033[1mRoad Tax\033[0m
-    [3] Expiry Date \033[0;31m[In Development]\033[0m\n
+    [3] Expiry Date\n
     \033[1mRental\033[0m
     [4] Rate (per day) \033[0;31m[In Development]\033[0m
     [5] Availability \033[0;31m[In Development]\033[0m\n'''
@@ -165,7 +165,7 @@ def CarSerStaff():
                                     details = data[i].split(';')
                                     # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current insurance policy number for {export_registration_no} is {details[6]}. Enter a new value to change:\033[0m')
+                                        print(f'\033[1mThe current insurance policy number for {export_registration_no} is {details[6]}.\nEnter a new value to change:\033[0m')
                                         newInsNum = input('>>> ').upper()
 
                                         details[6] = newInsNum
@@ -179,10 +179,50 @@ def CarSerStaff():
 
                             # Option 2.2 - Update Insurance Expiry Date
                             if option == CSS_UPDATE_INSDTE:
-                                print('2')
+                                os.system('cls')
+
+                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                    data = file.readlines()
+
+                                for i in range(len(data)):
+                                    details = data[i].split(';')
+                                    # print(details) # For debugging purpose only
+                                    if details[0] == export_registration_no:
+                                        print(f'\033[1mThe current insurance policy expiry date for {export_registration_no} is {details[7]}.\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):\033[0m')
+                                        newInsDte = InputDate('>>> ')
+
+                                        details[7] = newInsDte
+                                        data[i] = ';'.join(details)
+
+                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                    file.writelines(data)
+                                    os.system('cls')
+
+                                return UpdateOptions(export_registration_no)
+
                             # Option 2.3 - Update Road Tax Expiry Date
                             if option == CSS_UPDATE_TAXDTE:
-                                print('3')
+                                os.system('cls')
+
+                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                    data = file.readlines()
+
+                                for i in range(len(data)):
+                                    details = data[i].split(';')
+                                    # print(details) # For debugging purpose only
+                                    if details[0] == export_registration_no:
+                                        print(f'\033[1mThe current road tax expiry date for {export_registration_no} is {details[8]}.\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):\033[0m')
+                                        newTaxDte = InputDate('>>> ')
+
+                                        details[8] = newTaxDte
+                                        data[i] = ';'.join(details)
+
+                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                    file.writelines(data)
+                                    os.system('cls')
+
+                                return UpdateOptions(export_registration_no)
+
                             # Option 2.4 - Update Rental Rate (per day)
                             if option == CSS_UPDATE_RTLDAY:
                                 print('4')
@@ -238,7 +278,6 @@ def CarSerStaff():
                         with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
                             print(f'\033[1mList of Registered Cars                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n')
 
-                            # [Optional] Check if file has no entry (but it doesnt matter because file will always have at-least 1 entry. If file doesnt have any entry that means file does not exist and FileNotFoundError will occur.)
                             for i, line in enumerate(file, start=1):
                                 data = '{:<15} {:<16} {:<14} {:<6} {:<3} {:<12} {:<12} {:<12} {:<12} {:<8} {:<15}'.format(*line.strip().split(';'))
                                 print(f'{str(i) + '.' :<4} {data}')
