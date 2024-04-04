@@ -26,7 +26,7 @@ def CSS1():
                 def updateCustomer():
                     def changeName():
                         while True:
-                            currentName = input("Enter the name you wish to update.Type 'q' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentName = input("Enter the name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
                             if currentName.lower() in ['q']:
                                 print('\033[1;31mAction terminated, going back to menu\033[0m')
                                 updateCustomer()
@@ -69,7 +69,7 @@ def CSS1():
                     
                     def changeID():
                         while True:
-                            currentIdName = input("Enter the customer's name you wish to update.Type 'q' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentIdName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
                             if currentIdName.lower() in ['q']:
                                 print('\033[1;31mAction terminated, going back to menu\033[0m')
                                 updateCustomer()
@@ -112,7 +112,7 @@ def CSS1():
                     
                     def changeLicense():
                         while True:
-                            currentLicenseName = input("Enter the customer's name you wish to update.Type 'q' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentLicenseName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
                             if currentLicenseName.lower() in ['q']:
                                 print('\033[1;31mAction terminated, going back to menu\033[0m')
                                 updateCustomer()
@@ -155,7 +155,7 @@ def CSS1():
                     
                     def changeAddress():
                         while True:
-                            currentAddressName = input("Enter the customer's name you wish to update.Type 'q' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentAddressName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
                             if currentAddressName.lower() in ['q']:
                                 print('\033[1;31mAction terminated, going back to menu\033[0m')
                                 updateCustomer()
@@ -198,7 +198,7 @@ def CSS1():
                     
                     def changeContact():
                         while True:
-                            currentContactName = input("Enter the customer's name you wish to update.Type 'q' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentContactName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
                             if currentContactName.lower() in ['q']:
                                 print('\033[1;31mAction terminated, going back to menu\033[0m')
                                 updateCustomer()
