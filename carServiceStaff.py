@@ -4,7 +4,7 @@ os.system('cls')
 def CarSerStaff():
     pageCarSerStaff = '''\033[1mCar Rental System | Car Service Staff            \033[0;31m[q] Logout\033[0m\n
     [1] Register a new car
-    [2] Update car details \033[0;31m[In Development]\033[0m
+    [2] Update car details
     [3] View registered cars
     [4] Update own profile\n'''
 
@@ -129,16 +129,16 @@ def CarSerStaff():
             if option == CSS_UPDATE:
                 os.system('cls')
 
-                def UpdateOptions():
-                    pageCarUpdateOpt = f'''\033[1mUpdate Options                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n
+                def UpdateOptions(export_registration_no):
+                    pageCarUpdateOpt = f'''\033[1mUpdate Options for {export_registration_no}                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n
     \033[1mInsurance\033[0m
     [1] Policy Number
-    [2] Expiry Date\n
+    [2] Expiry Date \033[0;31m[In Development]\033[0m\n
     \033[1mRoad Tax\033[0m
-    [3] Expiry Date\n
+    [3] Expiry Date \033[0;31m[In Development]\033[0m\n
     \033[1mRental\033[0m
-    [4] Rate (per day)
-    [5] Availability\n'''
+    [4] Rate (per day) \033[0;31m[In Development]\033[0m
+    [5] Availability \033[0;31m[In Development]\033[0m\n'''
 
                     print(f'{pageCarUpdateOpt}')
 
@@ -156,7 +156,27 @@ def CarSerStaff():
                         else:
                             # Option 2.1 - Update Insurance Policy Number
                             if option == CSS_UPDATE_INSNUM:
-                                print('1')
+                                os.system('cls')
+
+                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                    data = file.readlines()
+
+                                for i in range(len(data)):
+                                    details = data[i].split(';')
+                                    # print(details) # For debugging purpose only
+                                    if details[0] == export_registration_no:
+                                        print(f'\033[1mThe current insurance policy number for {export_registration_no} is {details[6]}. Enter a new value to change:\033[0m')
+                                        newInsNum = input('>>> ').upper()
+
+                                        details[6] = newInsNum
+                                        data[i] = ';'.join(details)
+
+                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                    file.writelines(data)
+                                    os.system('cls')
+
+                                return UpdateOptions(export_registration_no)
+
                             # Option 2.2 - Update Insurance Expiry Date
                             if option == CSS_UPDATE_INSDTE:
                                 print('2')
@@ -191,11 +211,11 @@ def CarSerStaff():
                             # print(result) # For debugging purpose only
 
                             while True:
-                                option = input('>>> ').upper()
+                                export_registration_no = input('>>> ').upper()
 
-                                if option in result:
+                                if export_registration_no in result:
                                     os.system('cls')
-                                    UpdateOptions()
+                                    UpdateOptions(export_registration_no)
                                     break
                                 else:
                                     print('\033[0;31m\033[1mError: No such car found.\033[0m')
