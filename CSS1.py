@@ -38,7 +38,7 @@ def CSS1():
                             elif reNewName == 'n':
                                 changeName()
                             else:
-                                nameCheck = 0 # Check for invalid search value
+                                nameCheck = 0
 
                                 with open('customer.txt') as customer_file:
                                     accounts = customer_file.readlines()
@@ -47,9 +47,8 @@ def CSS1():
                                     # Modify data
                                     for index, line in enumerate(accounts):
                                         data = line.split(';')
-                                        # print(data)
-                                        if data[1] == currentName: #Check for inputted name
-                                            data[1] = newName #Updated Name
+                                        if data[1] == currentName:
+                                            data[1] = newName
                                             accounts[index] = ';'.join(data)
                                         else:
                                             nameCheck += 1
@@ -82,7 +81,7 @@ def CSS1():
                             elif reNewID == 'n':
                                 changeID()
                             else:
-                                idCheck = 0 # Check for invalid search value
+                                idCheck = 0
 
                                 with open('customer.txt') as customer_file:
                                     accounts = customer_file.readlines()
@@ -91,9 +90,8 @@ def CSS1():
                                     # Modify data
                                     for index, line in enumerate(accounts):
                                         data = line.split(';')
-                                        # print(data)
-                                        if data[1] == currentIdName: #Check for inputted name
-                                            data[2] = newId #Updated ID
+                                        if data[1] == currentIdName: 
+                                            data[2] = newId
                                             accounts[index] = ';'.join(data)
                                         else:
                                             idCheck += 1
@@ -126,7 +124,7 @@ def CSS1():
                             elif reNewLicense == 'n':
                                 changeLicense()
                             else:
-                                licenseCheck = 0 # Check for invalid search value
+                                licenseCheck = 0
 
                                 with open('customer.txt') as customer_file:
                                     accounts = customer_file.readlines()
@@ -135,9 +133,8 @@ def CSS1():
                                     # Modify data
                                     for index, line in enumerate(accounts):
                                         data = line.split(';')
-                                        # print(data)
-                                        if data[1] == currentLicenseName: #Check for inputted name
-                                            data[3] = newLicense #Updated ID
+                                        if data[1] == currentLicenseName: 
+                                            data[3] = newLicense
                                             accounts[index] = ';'.join(data)
                                         else:
                                             licenseCheck += 1
@@ -170,7 +167,7 @@ def CSS1():
                             elif reNewAddress == 'n':
                                 changeAddress()
                             else:
-                                addressCheck = 0 # Check for invalid search value
+                                addressCheck = 0
 
                                 with open('customer.txt') as customer_file:
                                     accounts = customer_file.readlines()
@@ -179,9 +176,8 @@ def CSS1():
                                     # Modify data
                                     for index, line in enumerate(accounts):
                                         data = line.split(';')
-                                        # print(data)
-                                        if data[1] == currentAddressName: #Check for inputted name
-                                            data[4] = newAddress #Updated ID
+                                        if data[1] == currentAddressName: 
+                                            data[4] = newAddress
                                             accounts[index] = ';'.join(data)
                                         else:
                                             addressCheck += 1
@@ -214,7 +210,7 @@ def CSS1():
                             elif reNewContact == 'n':
                                 changeAddress()
                             else:
-                                contactCheck = 0 # Check for invalid search value
+                                contactCheck = 0
 
                                 with open('customer.txt') as customer_file:
                                     accounts = customer_file.readlines()
@@ -223,9 +219,8 @@ def CSS1():
                                     # Modify data
                                     for index, line in enumerate(accounts):
                                         data = line.split(';')
-                                        # print(data)
-                                        if data[1] == currentContactName: #Check for inputted name
-                                            data[5] = newContact #Updated ID
+                                        if data[1] == currentContactName: 
+                                            data[5] = newContact
                                             accounts[index] = ';'.join(data)
                                         else:
                                             contactCheck += 1
