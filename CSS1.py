@@ -72,8 +72,7 @@ def CSS1():
                 print("\n\033[1;32mAccount succesfully created!\033[0m\n")
                 
                 CSS1()
-                
-            
+                            
             elif choice == updateCustomer:
                 def updateCustomer():
                     def changeName():
