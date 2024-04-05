@@ -50,6 +50,18 @@ def CarSerStaff():
                 print('\033[0;31m\033[1mError: Please enter a date in the format of DD-MM-YYYY.\033[0m')
         return date
 
+    def InputFloat(prompt):
+        while True:
+            try:
+                flt = float(input(prompt))
+            except ValueError:
+                print('\033[0;31m\033[1mError: Please enter a valid float.\033[0m')
+                continue
+            else:
+                truncated_flt = format(flt, '.2f')
+                break
+        return truncated_flt
+
 
     while True:
         option = input('>>> ').lower()
@@ -96,23 +108,12 @@ def CarSerStaff():
                     insurance_policy_no = input('Insurance Policy Number: ').upper()                                                            # string [XA123456]
                     insurance_expiry_date = InputDate(f'Insurance Expiry Date (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY): ')           # date [31-12-2024]
                     road_tax_expiry_date = InputDate(f'Road Tax Expiry Date (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY): ')             # date [31-12-2024]
-
-                    while True:
-                        try:
-                            renting_rate = float(input('Renting Rate (per day): '))         # float [250.00]
-                        except ValueError:
-                            print('\033[0;31m\033[1mError: Please enter a valid float.\033[0m')
-                            continue
-
-                        else:
-                            truncated_renting_rate = format(renting_rate, '.2f')
-                            break
-
+                    renting_rate = InputFloat('Renting Rate (per day): ')                                                                       # float [250.00]
                     rental_availability = 'available'
 
                     try:
                         with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='a') as file: # 'a' - open a file for appending the text or creates a new file if the file does not exist
-                            file.write(f'{registration_no};{manufacturer};{model};{year_of_manufacture};{seating_capacity};{last_service_date};{insurance_policy_no};{insurance_expiry_date};{road_tax_expiry_date};{truncated_renting_rate};{rental_availability}\n')
+                            file.write(f'{registration_no};{manufacturer};{model};{year_of_manufacture};{seating_capacity};{last_service_date};{insurance_policy_no};{insurance_expiry_date};{road_tax_expiry_date};{renting_rate};{rental_availability}\n')
                             file.close() # Using 'with open() as x', you dont actually need the .close() method but without this line, the file will be created and it is always empty
 
                             os.system('cls')
@@ -137,7 +138,7 @@ def CarSerStaff():
     \033[1mRoad Tax\033[0m
     [3] Expiry Date\n
     \033[1mRental\033[0m
-    [4] Rate (per day) \033[0;31m[In Development]\033[0m
+    [4] Rate (per day)
     [5] Availability \033[0;31m[In Development]\033[0m\n'''
 
                     print(f'{pageCarUpdateOpt}')
@@ -165,7 +166,7 @@ def CarSerStaff():
                                     details = data[i].split(';')
                                     # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current Insurance Policy Number for {export_registration_no} is {details[6]}.\033[0m\n\nEnter a new value to change:')
+                                        print(f'\033[1mThe current Insurance Policy Number for {export_registration_no} is {details[6]}\033[0m\n\nEnter a new value to change:')
                                         newInsNum = input('>>> ').upper()
 
                                         details[6] = newInsNum
@@ -188,7 +189,7 @@ def CarSerStaff():
                                     details = data[i].split(';')
                                     # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current Insurance Policy Expiry Date for {export_registration_no} is {details[7]}.\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
+                                        print(f'\033[1mThe current Insurance Policy Expiry Date for {export_registration_no} is {details[7]}\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
                                         newInsDte = InputDate('>>> ')
 
                                         details[7] = newInsDte
@@ -211,7 +212,7 @@ def CarSerStaff():
                                     details = data[i].split(';')
                                     # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current Road Tax Expiry Date for {export_registration_no} is {details[8]}.\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
+                                        print(f'\033[1mThe current Road Tax Expiry Date for {export_registration_no} is {details[8]}\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
                                         newTaxDte = InputDate('>>> ')
 
                                         details[8] = newTaxDte
@@ -225,7 +226,27 @@ def CarSerStaff():
 
                             # Option 2.4 - Update Rental Rate (per day)
                             if option == CSS_UPDATE_RTLDAY:
-                                print('4')
+                                os.system('cls')
+
+                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                    data = file.readlines()
+
+                                for i in range(len(data)):
+                                    details = data[i].split(';')
+                                    # print(details) # For debugging purpose only
+                                    if details[0] == export_registration_no:
+                                        print(f'\033[1mThe current Rental Rate (per day) for {export_registration_no} is {details[9]}\033[0m\n\nEnter a new value to change:')
+                                        newRtlDay = InputFloat('>>> ')
+
+                                        details[9] = newRtlDay
+                                        data[i] = ';'.join(details)
+
+                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                    file.writelines(data)
+                                    os.system('cls')
+
+                                return UpdateOptions(export_registration_no)
+
                             # Option 2.5 - Update Rental Availability
                             if option == CSS_UPDATE_RTLAVL:
                                 print('5')
