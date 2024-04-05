@@ -6,7 +6,8 @@ def CarSerStaff():
     [1] Register a new car
     [2] Update car details
     [3] View registered cars
-    [4] Update own profile\n'''
+    [4] Delete disposed cars
+    [5] Update own profile\n'''
 
     print(f'{pageCarSerStaff}')
 
@@ -15,7 +16,8 @@ def CarSerStaff():
     CSS_REGISTER = '1'
     CSS_UPDATE = '2'
     CSS_VIEW = '3'
-    CSS_PROFILE = '4'
+    CSS_DELETE = '4'
+    CSS_PROFILE = '5'
     CSS_LOGOUT = 'q'
 
     CSS_BACK = 'b'
@@ -66,8 +68,8 @@ def CarSerStaff():
     while True:
         option = input('>>> ').lower()
 
-        if option not in [CSS_REGISTER, CSS_UPDATE, CSS_VIEW, CSS_PROFILE, CSS_LOGOUT]:
-            print(f'\033[0;31;1mError: Please enter {CSS_REGISTER}, {CSS_UPDATE}, {CSS_VIEW}, {CSS_PROFILE}, or {CSS_LOGOUT} as an option.\033[0m')
+        if option not in [CSS_REGISTER, CSS_UPDATE, CSS_VIEW, CSS_DELETE, CSS_PROFILE, CSS_LOGOUT]:
+            print(f'\033[0;31;1mError: Please enter {CSS_REGISTER}, {CSS_UPDATE}, {CSS_VIEW}, {CSS_DELETE}, {CSS_PROFILE}, or {CSS_LOGOUT} as an option.\033[0m')
         else:
             # Option 1 - Register a new car
             if option == CSS_REGISTER:
@@ -357,11 +359,17 @@ Select a new status:
 
                 CarView()
 
-            # Option 4 - Update own profile
-            if option == CSS_PROFILE:
+            # Option 4 - Delete disposed cars
+            if option == CSS_DELETE:
                 # os.system('cls')
 
                 print('4')
+
+            # Option 5 - Update own profile
+            if option == CSS_PROFILE:
+                # os.system('cls')
+
+                print('5')
 
             # Option q - Logout
             if option == CSS_LOGOUT:
