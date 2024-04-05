@@ -3,7 +3,8 @@ def CSS1():
     [1] Register customer detail
     [2] Update customer details
     [3] View registered customers
-    [4] Update own profile \033[0;31m[In Development]\033[0m
+    [4] Delete deprecated customer
+    [5] Update own profile \033[0;31m[In Development]\033[0m
     
     Enter \033[1;32m1, 2, 3, 4\033[0m or \033[0;31mQ\033[0m to Logout\n'''
 
@@ -12,7 +13,8 @@ def CSS1():
     registerCustomer = '1'
     updateCustomer = '2'
     viewCustomer = '3'
-    ownProfile = '4'
+    deleteCustomer = '4'
+    ownProfile = '5'
     logout = 'q'
 
     CSS1_BACK = 'b'
@@ -20,34 +22,44 @@ def CSS1():
     while True:
         choice = input('>>> ').lower()
         if choice not in [registerCustomer, updateCustomer, viewCustomer, ownProfile, logout]:
-            print(f'\033[0;31m\033[1mError: Please enter {registerCustomer}, {updateCustomer}, {viewCustomer}, {ownProfile} or {logout} as an option.\033[0m')
+            print(f'\033[0;31m\033[1mError: Please enter {registerCustomer}, {updateCustomer}, {viewCustomer}, {deleteCustomer}, {ownProfile} or {logout} as an option.\033[0m')
         else:
             if choice == registerCustomer:
+                def get_input(prompt):
+                    user_input = input(prompt)
+                    if user_input.lower() == 'q':
+                        print('\033[1;31mAction terminated, going back to menu\033[0m')
+                        CSS1()
+                    return user_input
+
                 print("\n\033[1mEnter '\033[1;31mQ\033[0m' \033[1mto restart or quit.\n\033[0m")
-                custName = input('Enter customer\'s name: ')
-                if custName.lower() == 'q':
-                    print('\033[1;31mAction terminated, going back to menu\033[0m')
-                    CSS1()
-                custID = input("Enter customer's IC/Passport: ")
-                if custID.lower() == 'q':
-                    print('\033[1;31mAction terminated, going back to menu\033[0m')
-                    CSS1()
-                custLicense = input('Enter customer\'s license number: ')
-                if custLicense.lower() == 'q':
-                    print('\033[1;31mAction terminated, going back to menu\033[0m')
-                    CSS1()
-                custAddress = input("Enter customer's address: ")
-                if custAddress.lower() == 'q':
-                    print('\033[1;31mAction terminated, going back to menu\033[0m')
-                    CSS1()
-                custContact = input("Enter customer's contact number: ")
-                if custContact.lower() == 'q':
-                    print('\033[1;31mAction terminated, going back to menu\033[0m')
-                    CSS1()
-                date = input("Insert today's date \033[0;31m(DD-MM-YYYY)\033[0m: ")
-                if date.lower() == 'q':
-                    print('\033[1;31mAction terminated, going back to menu\033[0m')
-                    CSS1()
+
+                custName = get_input("Enter customer's name: ")
+                custID = get_input("Enter customer's IC/Passport: ")
+                custLicense = get_input("Enter customer's license number: ")
+                custAddress = get_input("Enter customer's address: ")
+                custContact = get_input("Enter customer's contact number: ")
+                def InputDate(prompt):
+                    while True:
+                        try:
+                            date = input(prompt)
+                            day, month, year = date.split('-')
+
+                            if len(day) != 2 or not day.isdigit() or int(day) < 1 or int(day) > 31:
+                                print('\033[0;31m\033[1mError: Please enter a day between 01 and 31.\033[0m')
+                                continue
+                            elif len(month) != 2 or not month.isdigit() or int(month) < 1 or int(month) > 12:
+                                print('\033[0;31m\033[1mError: Please enter a month between 01 and 12.\033[0m')
+                                continue
+                            elif len(year) != 4 or not year.isdigit():
+                                print(f'\033[0;31m\033[1mError: Please enter a four digit year.\033[0m')
+                                continue
+                            else:
+                                break
+                        except ValueError:
+                            print('\033[0;31m\033[1mError: Please enter a date in the format of DD-MM-YYYY.\033[0m')
+                    return date
+                date = InputDate(f"Enter today's date: ")
 
                 with open('customer.txt') as customer_file:
                     accounts = customer_file.readlines()
@@ -333,6 +345,9 @@ def CSS1():
                     if exitMenu.lower() == 'x':
                         CSS1()
 
+            elif choice == deleteCustomer:
+                return
+            
             elif choice == ownProfile:
                 return
 
