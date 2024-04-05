@@ -108,8 +108,9 @@ def CarSerStaff():
                     insurance_policy_no = input('Insurance Policy Number: ').upper()                                                            # string [XA123456]
                     insurance_expiry_date = InputDate(f'Insurance Expiry Date (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY): ')           # date [31-12-2024]
                     road_tax_expiry_date = InputDate(f'Road Tax Expiry Date (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY): ')             # date [31-12-2024]
-                    renting_rate = InputFloat('Renting Rate (per day): ')                                                                       # float [250.00]
-                    rental_availability = 'Available'                                                                                           # string [Available]
+
+                    renting_rate = 'null'                   # This field needs to be filled by the manager
+                    rental_availability = 'Available'       # The car is 'Available' by default
 
                     try:
                         with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='a') as file: # 'a' - open a file for appending the text or creates a new file if the file does not exist
