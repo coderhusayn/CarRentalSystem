@@ -261,8 +261,8 @@ def CarSerStaff():
 
                                 for details in data:
                                     if details[0] == export_registration_no:
-                                        pageOptRtlAvl = f'''\033[1mThe current Rental Availability for {export_registration_no} is {details[10]}\033[0m\n
-Select a new status:
+                                        pageOptRtlAvl = f'''\033[1mThe current Rental Availability for {export_registration_no} is {details[10]}
+    Select a new status:\033[0m
     [1] Available
     [2] Reserved
     [3] Rented
