@@ -111,12 +111,15 @@ def CarSerStaff():
                     insurance_expiry_date = InputDate(f'Insurance Expiry Date (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY): ')           # date [31-12-2024]
                     road_tax_expiry_date = InputDate(f'Road Tax Expiry Date (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY): ')             # date [31-12-2024]
 
-                    renting_rate = 'null'                   # This field needs to be filled by the manager
-                    rental_availability = 'Available'       # The car is 'Available' by default
+                    rent_rate = 'null'                      # To be filled by Manager (null by default)
+                    rent_availability = 'Available'
+
+                    rent_start_date = 'null'                # To be filled by Customer Service Staff II (null by default)
+                    rent_end_date = 'null'                  # To be filled by Customer Service Staff II (null by default)
 
                     try:
                         with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='a') as file: # 'a' - open a file for appending the text or creates a new file if the file does not exist
-                            file.write(f'{registration_no};{manufacturer};{model};{year_of_manufacture};{seating_capacity};{last_service_date};{insurance_policy_no};{insurance_expiry_date};{road_tax_expiry_date};{renting_rate};{rental_availability}\n')
+                            file.write(f'{registration_no};{manufacturer};{model};{year_of_manufacture};{seating_capacity};{last_service_date};{insurance_policy_no};{insurance_expiry_date};{road_tax_expiry_date};{rent_rate};{rent_availability};{rent_start_date};{rent_end_date}\n')
                             file.close() # Using 'with open() as x', you dont actually need the .close() method but without this line, the file will be created and it is always empty
 
                             os.system('cls')
@@ -190,7 +193,6 @@ def CarSerStaff():
 
                                 for i in range(len(data)):
                                     details = data[i].split(';')
-                                    # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
                                         print(f'\033[1mThe current Insurance Policy Expiry Date for {export_registration_no} is {details[7]}\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
                                         newInsDte = InputDate('>>> ')
@@ -213,7 +215,6 @@ def CarSerStaff():
 
                                 for i in range(len(data)):
                                     details = data[i].split(';')
-                                    # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
                                         print(f'\033[1mThe current Road Tax Expiry Date for {export_registration_no} is {details[8]}\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
                                         newTaxDte = InputDate('>>> ')
@@ -236,7 +237,6 @@ def CarSerStaff():
 
                                 for i in range(len(data)):
                                     details = data[i].split(';')
-                                    # print(details) # For debugging purpose only
                                     if details[0] == export_registration_no:
                                         print(f'\033[1mThe current Rental Rate (per day) for {export_registration_no} is {details[9]}\033[0m\n\nEnter a new value to change:')
                                         newRtlDay = InputFloat('>>> ')
@@ -261,7 +261,7 @@ def CarSerStaff():
 
                                 for details in data:
                                     if details[0] == export_registration_no:
-                                        pageOptRtlAvl = f'''\033[1mThe current Rental Availability for {export_registration_no} is {details[10]}
+                                        pageOptRtlAvl = f'''\033[1mThe current Rental Availability for {export_registration_no} is {details[10]}\n
     Select a new status:\033[0m
     [1] Available
     [2] Reserved
@@ -332,13 +332,18 @@ def CarSerStaff():
                 def CarView():
                     try:
                         with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
-                            print(f'\033[1mList of Registered Cars                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n')
+                            pageCarView = f'''\033[1mList of Registered Cars                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n
+    \033[1mRegistration No.     Manufacturer         Model                Manufacture Year     Seating Capacity     Last Service         Ins. Policy No.      Ins. Expiry          Road Tax Expiry      Rent Rate            Rent Availibility    Rent Start           Rent End\033[0m\n'''
+
+                            print(f'{pageCarView}')
 
                             for i, line in enumerate(file, start=1):
-                                data = '{:<15} {:<16} {:<14} {:<6} {:<3} {:<12} {:<12} {:<12} {:<12} {:<8} {:<15}'.format(*line.strip().split(';'))
-                                print(f'{str(i) + '.' :<4} {data}')
+                                data = line.strip().split(';')
+                                formatted_data = ' '.join(f'{item:<20}' for item in data)
+                                print(f'{str(i) + '.' :<3} {formatted_data}')
 
                             print('\n', end='')
+
                             file.close()
 
                             while True:
