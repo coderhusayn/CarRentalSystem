@@ -120,11 +120,10 @@ def CarSerStaff():
                     try:
                         with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='a') as file: # 'a' - open a file for appending the text or creates a new file if the file does not exist
                             file.write(f'{registration_no};{manufacturer};{model};{year_of_manufacture};{seating_capacity};{last_service_date};{insurance_policy_no};{insurance_expiry_date};{road_tax_expiry_date};{rent_rate};{rent_availability};{rent_start_date};{rent_end_date}\n')
-                            file.close() # Using 'with open() as x', you dont actually need the .close() method but without this line, the file will be created and it is always empty
 
-                            os.system('cls')
-                            print('\033[0;33mSuccessfully registered a new car in the system.\033[0m\n')
-                            CarSerStaff()
+                        os.system('cls')
+                        print('\033[0;33mSuccessfully registered a new car in the system.\033[0m\n')
+                        CarSerStaff()
 
                     except PermissionError:
                         print(f'{ERR_FILE_NO_PERM}')
@@ -289,6 +288,7 @@ def CarSerStaff():
                             if option == CSS_BACK:
                                 os.system('cls')
                                 CarSerStaff()
+
                             break
 
 
@@ -302,7 +302,6 @@ def CarSerStaff():
 
                             for i in lines:
                                 result.append(i.split(';')[0])
-                            file.close()
 
                             # print(result) # For debugging purpose only
 
@@ -344,8 +343,6 @@ def CarSerStaff():
 
                             print('\n', end='')
 
-                            file.close()
-
                             while True:
                                 option = input('>>> ').lower()
                                 if option not in CSS_BACK:
@@ -366,9 +363,44 @@ def CarSerStaff():
 
             # Option 4 - Delete disposed cars
             if option == CSS_DELETE:
-                # os.system('cls')
+                os.system('cls')
 
-                print('4')
+                def CarDelete():
+                    print(f'\033[1;37mEnter \033[0;31;1mdelete \033[1;37mto remove disposed cars                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n')
+
+                    while True:
+                        option = input('>>> ').lower()
+
+                        if option not in ['delete', CSS_BACK]:
+                            print(f'\033[0;31;1mError: Please enter delete or {CSS_BACK} as an option.\033[0m')
+                        else:
+                            if option == 'delete':
+                                try:
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                        data = file.readlines()
+                                        notDisposedData = [line for line in data if not line.split(';')[10] == 'Disposed']
+
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                        file.writelines(notDisposedData)
+
+                                    os.system('cls')
+                                    print('\033[0;33mSuccessfully removed disposed cars from the system.\033[0m\n')
+                                    CarSerStaff()
+
+                                except FileNotFoundError:
+                                    print(f'{ERR_FILE_NOT_FOUND}')
+                                    CarSerStaff()
+                                except PermissionError:
+                                    print(f'{ERR_FILE_NO_PERM}')
+                                    CarSerStaff()
+
+                            if option == CSS_BACK:
+                                os.system('cls')
+                                CarSerStaff()
+
+                            break
+
+                CarDelete()
 
             # Option 5 - Update own profile
             if option == CSS_PROFILE:
