@@ -33,9 +33,9 @@ def index():
                     elif data[2] == 'STFCAR':
                         CarSerStaff()
                     else:
-                        print('Unexpected error has occured, please contact admin to get it fixed.')
+                        print('Unexpected error has occured, please contact an admin to get it fixed.')
                 else:
-                    raise SystemExit('\033[0;31m\033[1mThere seems to be a problem with your account. Please contact admin to get it fixed.\033[0m')
+                    raise SystemExit('\033[0;31m\033[1mThere seems to be a problem with your account. Please contact an admin to get it fixed.\033[0m')
         
         loginAttempt -= 1
         if loginAttempt > 0:

@@ -5,7 +5,7 @@ os.system('cls')
 from updateProfile import updateOwnProfile
 
 def CarSerStaff():
-    pageCarSerStaff = '''\033[1mCar Rental System | Car Service Staff\033[0m\n
+    pageCarSerStaff = '''\033[1mCar Rental System | Car Service            \033[0;31m[q] Logout\033[0m\n
     [1] Register a new car
     [2] Update car details
     [3] View registered cars
@@ -21,6 +21,7 @@ def CarSerStaff():
     CSS_VIEW = '3'
     CSS_DELETE = '4'
     CSS_PROFILE = '5'
+    CSS_LOGOUT = 'q'
 
     CSS_BACK = 'b'
 
@@ -70,8 +71,8 @@ def CarSerStaff():
     while True:
         option = input('>>> ').lower()
 
-        if option not in [CSS_REGISTER, CSS_UPDATE, CSS_VIEW, CSS_DELETE, CSS_PROFILE]:
-            print(f'\033[0;31;1mError: Please enter {CSS_REGISTER}, {CSS_UPDATE}, {CSS_VIEW}, {CSS_DELETE}, or {CSS_PROFILE} as an option.\033[0m')
+        if option not in [CSS_REGISTER, CSS_UPDATE, CSS_VIEW, CSS_DELETE, CSS_PROFILE, CSS_LOGOUT]:
+            print(f'\033[0;31;1mError: Please enter {CSS_REGISTER}, {CSS_UPDATE}, {CSS_VIEW}, {CSS_DELETE}, {CSS_PROFILE}, or {CSS_LOGOUT} as an option.\033[0m')
         else:
             # Option 1 - Register a new car
             if option == CSS_REGISTER:
@@ -409,6 +410,10 @@ def CarSerStaff():
                 os.system('cls')
 
                 updateOwnProfile()
+
+            # Option q - Logout
+            if option == CSS_LOGOUT:
+                raise SystemExit("\033[1;32mYou have logged out\033[0m")
 
             break
 

@@ -1,22 +1,26 @@
 # CarRentalSystem
 
 ## Files
-`login.py` login() <br/>
+`index.py` Main Page <br/>
 `updateProfile.py` updateOwnProfile()
 
-###### Hussain
+###### Hussain (Manager)
 ```
 Manager.py
 credentials.txt
 ```
 
-###### Karlson
+###### Karlson (Customer Service Staff I)
 ```
 CSS1.py
 customer.txt
 ```
 
-###### Yew Shan
+###### Pavin (Customer Service Staff II)
+```
+```
+
+###### Yew Shan (Car Service Staff)
 ```
 carServiceStaff.py
 car_db.txt
