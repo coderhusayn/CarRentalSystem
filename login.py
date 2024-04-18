@@ -15,8 +15,11 @@ def login():
             # print(data) # Check how the data is listed
 
             if userName == data[0] and userPass == data[1]:
-                print(f'\nWelcome, {data[3].title()}!')
-                raise SystemExit('Now it will redirect to the proper menu')
+                if data[-1] == 'Active':
+                    print(f'\nWelcome, {data[3].title()}!')
+                    raise SystemExit('Now it will redirect to the proper menu')
+                else:
+                    raise SystemExit('\033[0;31m\033[1mThere seems to be a problem with your account. Please contact admin to get it fixed.\033[0m')
         
         loginAttempt -= 1
         if loginAttempt > 0:
