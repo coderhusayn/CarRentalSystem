@@ -49,5 +49,3 @@ def updateOwnProfile():
             print(f'\n\033[0;31m\033[1mIncorrect username or password. {loginAttempt} tries left.\033[0m')
         else:
             raise SystemExit('\033[0;31m\033[1mLogin failed after 3 attempts.\033[0m')
-
-updateOwnProfile()

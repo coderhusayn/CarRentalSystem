@@ -1,6 +1,9 @@
 import os
 os.system('cls')
 
+# Import updateOwnProfile() function from updateProfile.js
+from updateProfile import updateOwnProfile
+
 def CarSerStaff():
     pageCarSerStaff = '''\033[1mCar Rental System | Car Service Staff\033[0m\n
     [1] Register a new car
@@ -403,11 +406,9 @@ def CarSerStaff():
 
             # Option 5 - Update own profile
             if option == CSS_PROFILE:
-                # os.system('cls')
+                os.system('cls')
 
-                # [To-Do] Add 'Update own profile' function here
-
-                print('5')
+                updateOwnProfile()
 
             break
 
