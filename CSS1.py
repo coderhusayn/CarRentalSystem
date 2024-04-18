@@ -5,8 +5,8 @@ def CSS1():
     [1] Register customer detail
     [2] Update customer details
     [3] View registered customers
-    [4] Delete deprecated customer
-    [5] Update own profile \033[0;31m[In Development]\033[0m
+    [4] Delete deprecated customer \033[0;31m[In Development]\033[0m
+    [5] Update own profile
     
     Enter \033[1;32m1, 2, 3, 4\033[0m or \033[0;31mQ\033[0m to Logout\n'''
 
