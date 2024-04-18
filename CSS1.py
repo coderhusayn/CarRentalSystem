@@ -1,3 +1,5 @@
+from updateProfile import updateOwnProfile
+
 def CSS1():
     mainMenu = '''\033[1mCar Rental System | Customer Detail            \033[0;31m[q] Logout\033[0m\n
     [1] Register customer detail
@@ -348,7 +350,7 @@ def CSS1():
                 return
             
             elif choice == ownProfile:
-                return
+                updateOwnProfile()
 
             elif choice == logout:
                 raise SystemExit("\033[1;32mYou have logged out\033[0m")
