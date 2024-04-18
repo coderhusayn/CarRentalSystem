@@ -27,4 +27,4 @@ def login():
         else:
             raise SystemExit('\033[0;31m\033[1mLogin failed after 3 attempts.\033[0m')
 
-login()
+#Moved login() to index.py Run code from there

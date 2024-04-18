@@ -249,5 +249,4 @@ def Manager():
         case _:
             print("Invalid")
 
-if __name__ == "__main__":
-    Manager()
+#Moved Manager() to index.py Run code from there

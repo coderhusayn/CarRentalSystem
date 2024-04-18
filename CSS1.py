@@ -355,5 +355,4 @@ def CSS1():
             elif choice == logout:
                 raise SystemExit("\033[1;32mYou have logged out\033[0m")
                 
-
-CSS1()
+#Moved CSS1() to index.py Run code from there

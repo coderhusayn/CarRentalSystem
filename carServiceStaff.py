@@ -341,7 +341,7 @@ def CarSerStaff():
                             for i, line in enumerate(file, start=1):
                                 data = line.strip().split(';')
                                 formatted_data = ' '.join(f'{item:<20}' for item in data)
-                                print(f'{str(i) + '.' :<3} {formatted_data}')
+                                print(f"{str(i) + '.' :<3} {formatted_data}")
 
                             print('\n', end='')
 
@@ -412,4 +412,4 @@ def CarSerStaff():
 
             break
 
-CarSerStaff()
+#Moved CarSerStaff() to index.py Run code from there
