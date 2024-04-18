@@ -245,7 +245,7 @@ def Manager():
         case "4":
             delete_staff_records()
         case "5":
-            print("Exit")
+            raise SystemExit("Exit")
         case _:
             print("Invalid")
 
