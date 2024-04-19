@@ -40,7 +40,9 @@ def updateOwnProfile():
                 with open('credentials.txt', 'w') as credentials_file:
                     credentials_file.writelines(loginDetail)
 
-                raise SystemExit("\033[1;32mYou have logged out\033[0m")
+                print('\033[1;32mSucessfully updated account. Please login again\033[0m')
+                from index import index
+                index()
 
         loginAttempt -= 1
         if loginAttempt > 0:
