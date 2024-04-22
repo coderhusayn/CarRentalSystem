@@ -1,10 +1,11 @@
 def Manager():
-    print("\nWelcome Manager what would you like to do?")
-    print("1. View Staff Records")
-    print("2. Register New Records")
-    print("3. Update Staff Records")
-    print("4. Delete Staff Records")
-    print("5. Exit")
+    managerMenu = '''\033[1mCar Rental System | Manager            \033[0;31m[Q] Logout\033[0m\n
+    [1] View Staff Records
+    [2] Register New Records
+    [3] Update Staff Records
+    [4] Delete Staff Records\n
+    Enter \033[1;32m1, 2, 3, 4\033[0m or \033[0;31mQ\033[0m to Logout\n
+>>> '''
 
     def view_staff_records():
         with open ("credentials.txt") as credentials:
@@ -234,7 +235,7 @@ def Manager():
         if not username_found:
             print("Username not found")
             delete_staff_records()
-    choice = input("Enter your choice: ")
+    choice = input(managerMenu).upper()
     match choice:
         case "1":
             view_staff_records()
@@ -244,9 +245,9 @@ def Manager():
             update_staff_records()
         case "4":
             delete_staff_records()
-        case "5":
-            raise SystemExit("Exit")
+        case "Q":
+           raise SystemExit("\033[1;32mYou have logged out\033[0m")
         case _:
             print("Invalid")
 
-#Moved Manager() to index.py Run code from there
+# Moved Manager() to index.py, run code from there

@@ -1,29 +1,17 @@
 import os
-os.system('cls')
 
 # Import updateOwnProfile() function from updateProfile.py
 from updateProfile import updateOwnProfile
 
 def CarSerStaff():
-    pageCarSerStaff = '''\033[1mCar Rental System | Car Service            \033[0;31m[q] Logout\033[0m\n
-    [1] Register a new car
-    [2] Update car details
-    [3] View registered cars
-    [4] Delete disposed cars
-    [5] Update own profile\n'''
-
-    print(f'{pageCarSerStaff}')
-
-    # [To-Do] Add login() function here
-
     CSS_REGISTER = '1'
     CSS_UPDATE = '2'
     CSS_VIEW = '3'
     CSS_DELETE = '4'
     CSS_PROFILE = '5'
-    CSS_LOGOUT = 'q'
 
-    CSS_BACK = 'b'
+    CSS_BACK = 'B'
+    CSS_LOGOUT = 'Q'
 
     START_YEAR = 2010
     END_YEAR = 2024
@@ -33,6 +21,18 @@ def CarSerStaff():
 
     ERR_FILE_NOT_FOUND = '\n\033[0;31;1mError: The .txt file does not exist.\033[0m\n'
     ERR_FILE_NO_PERM = '\n\033[0;31;1mError: You do not have permission to access the .txt file.\033[0m\n'
+
+
+    pageCarSerStaff = f'''\033[1mCar Rental System | Car Service            \033[0;31m[{CSS_LOGOUT}] Logout\033[0m\n
+    [1] Register a new car
+    [2] Update car details
+    [3] View registered cars
+    [4] Delete disposed cars
+    [5] Update own profile\n
+    Enter \033[1;32m1, 2, 3, 4, 5\033[0m or \033[0;31m{CSS_LOGOUT}\033[0m to Logout\n'''
+
+    print(pageCarSerStaff)
+
 
     def InputDate(prompt):
         while True:
@@ -69,14 +69,13 @@ def CarSerStaff():
 
 
     while True:
-        option = input('>>> ').lower()
+        option = input('>>> ').upper()
 
         if option not in [CSS_REGISTER, CSS_UPDATE, CSS_VIEW, CSS_DELETE, CSS_PROFILE, CSS_LOGOUT]:
             print(f'\033[0;31;1mError: Please enter {CSS_REGISTER}, {CSS_UPDATE}, {CSS_VIEW}, {CSS_DELETE}, {CSS_PROFILE}, or {CSS_LOGOUT} as an option.\033[0m')
         else:
             # Option 1 - Register a new car
             if option == CSS_REGISTER:
-                os.system('cls')
 
                 def CarRegister():
                     print('\033[1mCar Details\033[0m\n')
@@ -124,7 +123,6 @@ def CarSerStaff():
                         with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='a') as file: # 'a' - open a file for appending the text or creates a new file if the file does not exist
                             file.write(f'{registration_no};{manufacturer};{model};{year_of_manufacture};{seating_capacity};{last_service_date};{insurance_policy_no};{insurance_expiry_date};{road_tax_expiry_date};{rent_rate};{rent_availability};{rent_start_date};{rent_end_date}\n')
 
-                        os.system('cls')
                         print('\033[0;33mSuccessfully registered a new car in the system.\033[0m\n')
                         CarSerStaff()
 
@@ -136,7 +134,6 @@ def CarSerStaff():
 
             # Option 2 - Update car details
             if option == CSS_UPDATE:
-                os.system('cls')
 
                 def UpdateOptions(export_registration_no):
                     pageCarUpdateOpt = f'''\033[1mUpdate Options for {export_registration_no}                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n
@@ -158,14 +155,13 @@ def CarSerStaff():
                     CSS_UPDATE_RTLAVL = '5'
 
                     while True:
-                        option = input('>>> ').lower()
+                        option = input('>>> ')
 
                         if option not in [CSS_UPDATE_INSNUM, CSS_UPDATE_INSDTE, CSS_UPDATE_TAXDTE, CSS_UPDATE_RTLDAY, CSS_UPDATE_RTLAVL, CSS_BACK]:
                             print(f'\033[0;31;1mError: Please enter {CSS_UPDATE_INSNUM}, {CSS_UPDATE_INSDTE}, {CSS_UPDATE_TAXDTE}, {CSS_UPDATE_RTLDAY}, {CSS_UPDATE_RTLAVL}, or {CSS_BACK} as an option.\033[0m')
                         else:
                             # Option 2.1 - Update Insurance Policy Number
                             if option == CSS_UPDATE_INSNUM:
-                                os.system('cls')
 
                                 with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
                                     data = file.readlines()
@@ -182,13 +178,11 @@ def CarSerStaff():
 
                                 with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
                                     file.writelines(data)
-                                    os.system('cls')
 
                                 return UpdateOptions(export_registration_no)
 
                             # Option 2.2 - Update Insurance Expiry Date
                             if option == CSS_UPDATE_INSDTE:
-                                os.system('cls')
 
                                 with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
                                     data = file.readlines()
@@ -204,13 +198,11 @@ def CarSerStaff():
 
                                 with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
                                     file.writelines(data)
-                                    os.system('cls')
 
                                 return UpdateOptions(export_registration_no)
 
                             # Option 2.3 - Update Road Tax Expiry Date
                             if option == CSS_UPDATE_TAXDTE:
-                                os.system('cls')
 
                                 with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
                                     data = file.readlines()
@@ -226,13 +218,11 @@ def CarSerStaff():
 
                                 with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
                                     file.writelines(data)
-                                    os.system('cls')
 
                                 return UpdateOptions(export_registration_no)
 
                             # Option 2.4 - Update Rental Rate (per day)
                             if option == CSS_UPDATE_RTLDAY:
-                                os.system('cls')
 
                                 with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
                                     data = file.readlines()
@@ -248,13 +238,11 @@ def CarSerStaff():
 
                                 with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
                                     file.writelines(data)
-                                    os.system('cls')
 
                                 return UpdateOptions(export_registration_no)
 
                             # Option 2.5 - Update Rental Availability
                             if option == CSS_UPDATE_RTLAVL:
-                                os.system('cls')
 
                                 statusDict = {'1': 'Available', '2': 'Reserved', '3': 'Rented', '4': 'Under Service', '5': 'Disposed'}
 
@@ -274,7 +262,7 @@ def CarSerStaff():
                                         print(f'{pageOptRtlAvl}')
 
                                         while True:
-                                            newRtlAvl = input('>>> ').lower()
+                                            newRtlAvl = input('>>> ')
                                             if newRtlAvl in statusDict:
                                                 details[10] = statusDict[newRtlAvl]
                                                 break
@@ -283,13 +271,11 @@ def CarSerStaff():
 
                                 with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
                                     file.writelines(';'.join(details) for details in data)
-                                    os.system('cls')
 
                                 return UpdateOptions(export_registration_no)
 
                             # Option 2.b - Go back
                             if option == CSS_BACK:
-                                os.system('cls')
                                 CarSerStaff()
 
                             break
@@ -312,7 +298,6 @@ def CarSerStaff():
                                 export_registration_no = input('>>> ').upper()
 
                                 if export_registration_no in result:
-                                    os.system('cls')
                                     UpdateOptions(export_registration_no)
                                     break
                                 else:
@@ -329,7 +314,6 @@ def CarSerStaff():
 
             # Option 3 - View registered cars
             if option == CSS_VIEW:
-                os.system('cls')
 
                 def CarView():
                     try:
@@ -347,11 +331,10 @@ def CarSerStaff():
                             print('\n', end='')
 
                             while True:
-                                option = input('>>> ').lower()
+                                option = input('>>> ').upper()
                                 if option not in CSS_BACK:
                                     print(f'\033[0;31;1mError: Please enter {CSS_BACK} as an option.\033[0m')
                                 elif option == CSS_BACK:
-                                    os.system('cls')
                                     CarSerStaff()
                                     break
 
@@ -366,18 +349,17 @@ def CarSerStaff():
 
             # Option 4 - Delete disposed cars
             if option == CSS_DELETE:
-                os.system('cls')
 
                 def CarDelete():
-                    print(f'\033[1;37mEnter \033[0;31;1mdelete \033[1;37mto remove disposed cars                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n')
+                    print(f'\033[1;37mEnter \033[0;31;1mDELETE \033[1;37mto remove disposed cars                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n')
 
                     while True:
-                        option = input('>>> ').lower()
+                        option = input('>>> ')
 
-                        if option not in ['delete', CSS_BACK]:
-                            print(f'\033[0;31;1mError: Please enter delete or {CSS_BACK} as an option.\033[0m')
+                        if option not in ['DELETE', CSS_BACK.lower(), CSS_BACK.upper()]:
+                            print(f'\033[0;31;1mError: Please enter DELETE or {CSS_BACK} as an option.\033[0m')
                         else:
-                            if option == 'delete':
+                            if option == 'DELETE':
                                 try:
                                     with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
                                         data = file.readlines()
@@ -386,7 +368,6 @@ def CarSerStaff():
                                     with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
                                         file.writelines(notDisposedData)
 
-                                    os.system('cls')
                                     print('\033[0;33mSuccessfully removed disposed cars from the system.\033[0m\n')
                                     CarSerStaff()
 
@@ -397,8 +378,7 @@ def CarSerStaff():
                                     print(f'{ERR_FILE_NO_PERM}')
                                     CarSerStaff()
 
-                            if option == CSS_BACK:
-                                os.system('cls')
+                            if option.upper() == CSS_BACK:
                                 CarSerStaff()
 
                             break
@@ -407,8 +387,6 @@ def CarSerStaff():
 
             # Option 5 - Update own profile
             if option == CSS_PROFILE:
-                os.system('cls')
-
                 updateOwnProfile()
 
             # Option q - Logout
@@ -417,4 +395,4 @@ def CarSerStaff():
 
             break
 
-#Moved CarSerStaff() to index.py Run code from there
+# Moved CarSerStaff() to index.py, run code from there

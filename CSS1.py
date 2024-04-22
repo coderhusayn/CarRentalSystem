@@ -1,17 +1,6 @@
 from updateProfile import updateOwnProfile
 
 def CSS1():
-    mainMenu = '''\033[1mCar Rental System | Customer Detail            \033[0;31m[q] Logout\033[0m\n
-    [1] Register customer detail
-    [2] Update customer details
-    [3] View registered customers
-    [4] Delete deprecated customer \033[0;31m[In Development]\033[0m
-    [5] Update own profile
-    
-    Enter \033[1;32m1, 2, 3, 4\033[0m or \033[0;31mQ\033[0m to Logout\n'''
-
-    print(mainMenu)
-
     registerCustomer = '1'
     updateCustomer = '2'
     viewCustomer = '3'
@@ -20,6 +9,18 @@ def CSS1():
     logout = 'q'
 
     CSS1_BACK = 'b'
+
+
+    mainMenu = '''\033[1mCar Rental System | Customer Detail            \033[0;31m[Q] Logout\033[0m\n
+    [1] Register customer detail
+    [2] Update customer details
+    [3] View registered customers
+    [4] Delete deprecated customer \033[0;31m[In Development]\033[0m
+    [5] Update own profile\n
+    Enter \033[1;32m1, 2, 3, 4\033[0m or \033[0;31mQ\033[0m to Logout\n'''
+
+    print(mainMenu)
+
 
     while True:
         choice = input('>>> ').lower()
@@ -355,4 +356,4 @@ def CSS1():
             elif choice == logout:
                 raise SystemExit("\033[1;32mYou have logged out\033[0m")
                 
-#Moved CSS1() to index.py Run code from there
+# Moved CSS1() to index.py, run code from there
