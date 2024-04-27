@@ -155,7 +155,7 @@ def CarSerStaff():
                     CSS_UPDATE_RTLAVL = '5'
 
                     while True:
-                        option = input('>>> ')
+                        option = input('>>> ').upper()
 
                         if option not in [CSS_UPDATE_INSNUM, CSS_UPDATE_INSDTE, CSS_UPDATE_TAXDTE, CSS_UPDATE_RTLDAY, CSS_UPDATE_RTLAVL, CSS_BACK]:
                             print(f'\033[0;31;1mError: Please enter {CSS_UPDATE_INSNUM}, {CSS_UPDATE_INSDTE}, {CSS_UPDATE_TAXDTE}, {CSS_UPDATE_RTLDAY}, {CSS_UPDATE_RTLAVL}, or {CSS_BACK} as an option.\033[0m')
@@ -163,95 +163,108 @@ def CarSerStaff():
                             # Option 2.1 - Update Insurance Policy Number
                             if option == CSS_UPDATE_INSNUM:
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
-                                    data = file.readlines()
+                                def UpdateInsNum():
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                        data = file.readlines()
 
-                                for i in range(len(data)):
-                                    details = data[i].split(';')
-                                    # print(details) # For debugging purpose only
-                                    if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current Insurance Policy Number for {export_registration_no} is {details[6]}\033[0m\n\nEnter a new value to change:')
-                                        newInsNum = input('>>> ').upper()
+                                    for i in range(len(data)):
+                                        details = data[i].split(';')
+                                        # print(details) # For debugging purpose only
+                                        if details[0] == export_registration_no:
+                                            print(f'\033[1mThe current Insurance Policy Number for {export_registration_no} is {details[6]}\033[0m\n\nEnter a new value to change:')
+                                            newInsNum = input('>>> ').upper()
 
-                                        details[6] = newInsNum
-                                        data[i] = ';'.join(details)
+                                            details[6] = newInsNum
+                                            data[i] = ';'.join(details)
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
-                                    file.writelines(data)
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                        file.writelines(data)
 
-                                return UpdateOptions(export_registration_no)
+                                    return UpdateOptions(export_registration_no)
+                                
+                                UpdateInsNum()
 
                             # Option 2.2 - Update Insurance Expiry Date
                             if option == CSS_UPDATE_INSDTE:
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
-                                    data = file.readlines()
+                                def UpdateInsDte():
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                        data = file.readlines()
 
-                                for i in range(len(data)):
-                                    details = data[i].split(';')
-                                    if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current Insurance Policy Expiry Date for {export_registration_no} is {details[7]}\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
-                                        newInsDte = InputDate('>>> ')
+                                    for i in range(len(data)):
+                                        details = data[i].split(';')
+                                        if details[0] == export_registration_no:
+                                            print(f'\033[1mThe current Insurance Policy Expiry Date for {export_registration_no} is {details[7]}\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
+                                            newInsDte = InputDate('>>> ')
 
-                                        details[7] = newInsDte
-                                        data[i] = ';'.join(details)
+                                            details[7] = newInsDte
+                                            data[i] = ';'.join(details)
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
-                                    file.writelines(data)
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                        file.writelines(data)
 
-                                return UpdateOptions(export_registration_no)
+                                    return UpdateOptions(export_registration_no)
+                                
+                                UpdateInsDte()
 
                             # Option 2.3 - Update Road Tax Expiry Date
                             if option == CSS_UPDATE_TAXDTE:
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
-                                    data = file.readlines()
+                                def UpdateTaxDte():
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                        data = file.readlines()
 
-                                for i in range(len(data)):
-                                    details = data[i].split(';')
-                                    if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current Road Tax Expiry Date for {export_registration_no} is {details[8]}\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
-                                        newTaxDte = InputDate('>>> ')
+                                    for i in range(len(data)):
+                                        details = data[i].split(';')
+                                        if details[0] == export_registration_no:
+                                            print(f'\033[1mThe current Road Tax Expiry Date for {export_registration_no} is {details[8]}\033[0m\n\nEnter a new value to change (between {START_YEAR} and {END_YEAR} in DD-MM-YYYY):')
+                                            newTaxDte = InputDate('>>> ')
 
-                                        details[8] = newTaxDte
-                                        data[i] = ';'.join(details)
+                                            details[8] = newTaxDte
+                                            data[i] = ';'.join(details)
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
-                                    file.writelines(data)
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                        file.writelines(data)
 
-                                return UpdateOptions(export_registration_no)
+                                    return UpdateOptions(export_registration_no)
+                                
+                                UpdateTaxDte()
 
                             # Option 2.4 - Update Rental Rate (per day)
                             if option == CSS_UPDATE_RTLDAY:
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
-                                    data = file.readlines()
+                                def UpdateRtlDay():
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                        data = file.readlines()
 
-                                for i in range(len(data)):
-                                    details = data[i].split(';')
-                                    if details[0] == export_registration_no:
-                                        print(f'\033[1mThe current Rental Rate (per day) for {export_registration_no} is {details[9]}\033[0m\n\nEnter a new value to change:')
-                                        newRtlDay = InputFloat('>>> ')
+                                    for i in range(len(data)):
+                                        details = data[i].split(';')
+                                        if details[0] == export_registration_no:
+                                            print(f'\033[1mThe current Rental Rate (per day) for {export_registration_no} is {details[9]}\033[0m\n\nEnter a new value to change:')
+                                            newRtlDay = InputFloat('>>> ')
 
-                                        details[9] = newRtlDay
-                                        data[i] = ';'.join(details)
+                                            details[9] = newRtlDay
+                                            data[i] = ';'.join(details)
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
-                                    file.writelines(data)
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                        file.writelines(data)
 
-                                return UpdateOptions(export_registration_no)
+                                    return UpdateOptions(export_registration_no)
+
+                                UpdateRtlDay()
 
                             # Option 2.5 - Update Rental Availability
                             if option == CSS_UPDATE_RTLAVL:
 
-                                statusDict = {'1': 'Available', '2': 'Reserved', '3': 'Rented', '4': 'Under Service', '5': 'Disposed'}
+                                def UpdateRtlAvl():
+                                    statusDict = {'1': 'Available', '2': 'Reserved', '3': 'Rented', '4': 'Under Service', '5': 'Disposed'}
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
-                                    data = [line.split(';') for line in file.readlines()]
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='r') as file:
+                                        data = [line.split(';') for line in file.readlines()]
 
-                                for details in data:
-                                    if details[0] == export_registration_no:
-                                        pageOptRtlAvl = f'''\033[1mThe current Rental Availability for {export_registration_no} is {details[10]}\n
+                                    for details in data:
+                                        if details[0] == export_registration_no:
+                                            pageOptRtlAvl = f'''\033[1mThe current Rental Availability for {export_registration_no} is {details[10]}\n
     Select a new status:\033[0m
     [1] Available
     [2] Reserved
@@ -259,20 +272,22 @@ def CarSerStaff():
     [4] Under Service
     [5] Disposed\n'''
 
-                                        print(f'{pageOptRtlAvl}')
+                                            print(f'{pageOptRtlAvl}')
 
-                                        while True:
-                                            newRtlAvl = input('>>> ')
-                                            if newRtlAvl in statusDict:
-                                                details[10] = statusDict[newRtlAvl]
-                                                break
-                                            else:
-                                                print('\033[0;31;1mError: Please enter 1, 2, 3, 4, or 5 as an option.\033[0m')
+                                            while True:
+                                                newRtlAvl = input('>>> ')
+                                                if newRtlAvl in statusDict:
+                                                    details[10] = statusDict[newRtlAvl]
+                                                    break
+                                                else:
+                                                    print('\033[0;31;1mError: Please enter 1, 2, 3, 4, or 5 as an option.\033[0m')
 
-                                with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
-                                    file.writelines(';'.join(details) for details in data)
+                                    with open(os.path.join(os.path.dirname(__file__), 'car_db.txt'), mode='w') as file:
+                                        file.writelines(';'.join(details) for details in data)
 
-                                return UpdateOptions(export_registration_no)
+                                    return UpdateOptions(export_registration_no)
+                                
+                                UpdateRtlAvl()
 
                             # Option 2.b - Go back
                             if option == CSS_BACK:
