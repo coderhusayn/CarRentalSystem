@@ -1,8 +1,8 @@
 # CarRentalSystem
 
 ## Files
-`index.py` Main Page <br/>
-`updateProfile.py` updateOwnProfile()
+`index.py` Login Menu <br/>
+`updateProfile.py` updateOwnProfile() function
 
 ###### Hussain (Manager)
 ```

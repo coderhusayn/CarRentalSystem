@@ -1,6 +1,4 @@
 import os
-
-# Import updateOwnProfile() function from updateProfile.py
 from updateProfile import updateOwnProfile
 
 def CarSerStaff():
