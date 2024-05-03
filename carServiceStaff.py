@@ -2,6 +2,7 @@ import os
 from updateProfile import updateOwnProfile
 
 def CarSerStaff():
+    # Define constants
     CSS_REGISTER = '1'
     CSS_UPDATE = '2'
     CSS_VIEW = '3'
@@ -167,7 +168,7 @@ def CarSerStaff():
 
                                     for i in range(len(data)):
                                         details = data[i].split(';')
-                                        # print(details) # For debugging purpose only
+
                                         if details[0] == export_registration_no:
                                             print(f'\033[1mThe current Insurance Policy Number for {export_registration_no} is {details[6]}\033[0m\n\nEnter a new value to change:')
                                             newInsNum = input('>>> ').upper()
@@ -305,8 +306,6 @@ def CarSerStaff():
                             for i in lines:
                                 result.append(i.split(';')[0])
 
-                            # print(result) # For debugging purpose only
-
                             while True:
                                 export_registration_no = input('>>> ').upper()
 
@@ -407,5 +406,3 @@ def CarSerStaff():
                 raise SystemExit("\033[1;32mYou have logged out\033[0m")
 
             break
-
-# Moved CarSerStaff() to index.py, run code from there
