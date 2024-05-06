@@ -67,7 +67,7 @@ def CSS1():
                 with open('customer.txt') as customer_file:
                     accounts = customer_file.readlines()
 
-                # Modify data and check for existing account ID
+                # Modify data and check for existing account IDs
                 newID = len(accounts) + 1000001
                 for account in accounts:
                     if newID == int(account[1:8]):
