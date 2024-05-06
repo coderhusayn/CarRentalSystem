@@ -67,8 +67,11 @@ def CSS1():
                 with open('customer.txt') as customer_file:
                     accounts = customer_file.readlines()
 
-                # Modify data
+                # Modify data and check for existing account ID
                 newID = len(accounts) + 1000001
+                for account in accounts:
+                    if newID == int(account[1:8]):
+                        newID += 1
 
                 with open('customer.txt', 'a') as customer_file:
                     customer_file.write(f'\nC{newID};{custName};{custID};{custLicense};{custAddress};{custContact};{date}')
