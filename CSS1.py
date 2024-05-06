@@ -24,7 +24,7 @@ def CSS1():
 
     while True:
         choice = input('>>> ').lower()
-        if choice not in [registerCustomer, updateCustomer, viewCustomer, ownProfile, logout]:
+        if choice not in [registerCustomer, updateCustomer, viewCustomer, deleteCustomer, ownProfile, logout]:
             print(f'\033[0;31m\033[1mError: Please enter {registerCustomer}, {updateCustomer}, {viewCustomer}, {deleteCustomer}, {ownProfile} or {logout} as an option.\033[0m')
         else:
             if choice == registerCustomer:
