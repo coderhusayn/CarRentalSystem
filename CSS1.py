@@ -1,4 +1,4 @@
-from updateProfile import updateOwnProfile
+from Functions import UpdateProfile, InputDate
 
 def CSS1():
     registerCustomer = '1'
@@ -12,12 +12,12 @@ def CSS1():
 
 
     mainMenu = '''\033[1mCar Rental System | Customer Detail            \033[0;31m[Q] Logout\033[0m\n
-    [1] Register customer detail
+    [1] Register a new customer
     [2] Update customer details
     [3] View registered customers
     [4] Delete deprecated customer \033[0;31m[In Development]\033[0m
     [5] Update own profile\n
-    Enter \033[1;32m1, 2, 3, 4\033[0m or \033[0;31mQ\033[0m to Logout\n'''
+    Enter \033[1;32m1, 2, 3, 4, 5\033[0m or \033[0;31mQ\033[0m\n'''
 
     print(mainMenu)
 
@@ -31,37 +31,17 @@ def CSS1():
                 def get_input(prompt):
                     user_input = input(prompt)
                     if user_input.lower() == 'q':
-                        print('\033[1;31mAction terminated, going back to menu\033[0m')
+                        print('\033[1;31mAction terminated, returning to menu\033[0m')
                         CSS1()
                     return user_input
 
-                print("\n\033[1mEnter '\033[1;31mQ\033[0m' \033[1mto restart or quit.\n\033[0m")
+                print("\n\033[1mEnter '\033[1;31mQ\033[0m' \033[1mto cancel.\n\033[0m")
 
                 custName = get_input("Enter customer's name: ")
                 custID = get_input("Enter customer's IC/Passport: ")
                 custLicense = get_input("Enter customer's license number: ")
                 custAddress = get_input("Enter customer's address: ")
                 custContact = get_input("Enter customer's contact number: ")
-                def InputDate(prompt):
-                    while True:
-                        try:
-                            date = input(prompt)
-                            day, month, year = date.split('-')
-
-                            if len(day) != 2 or not day.isdigit() or int(day) < 1 or int(day) > 31:
-                                print('\033[0;31m\033[1mError: Please enter a day between 01 and 31.\033[0m')
-                                continue
-                            elif len(month) != 2 or not month.isdigit() or int(month) < 1 or int(month) > 12:
-                                print('\033[0;31m\033[1mError: Please enter a month between 01 and 12.\033[0m')
-                                continue
-                            elif len(year) != 4 or not year.isdigit():
-                                print(f'\033[0;31m\033[1mError: Please enter a four digit year.\033[0m')
-                                continue
-                            else:
-                                break
-                        except ValueError:
-                            print('\033[0;31m\033[1mError: Please enter a date in the format of DD-MM-YYYY.\033[0m')
-                    return date
                 date = InputDate(f"Enter today's date: ")
 
                 with open('customer.txt') as customer_file:
@@ -84,9 +64,9 @@ def CSS1():
                 def updateCustomer():
                     def changeName():
                         while True:
-                            currentName = input("Enter the name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentName = input("Enter the name you wish to update. Type '\033[1;31mq\033[0m' to return to menu (Name is case sensitive).\n>>> ")
                             if currentName.lower() in ['q']:
-                                print('\033[1;31mAction terminated, going back to menu\033[0m')
+                                print('\033[1;31mAction terminated, returning to menu\033[0m')
                                 updateCustomer()
                             newName = input("Enter the new name.\n>>> ")
 
@@ -127,9 +107,9 @@ def CSS1():
                     
                     def changeID():
                         while True:
-                            currentIdName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentIdName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to return to menu (Name is case sensitive).\n>>> ")
                             if currentIdName.lower() in ['q']:
-                                print('\033[1;31mAction terminated, going back to menu\033[0m')
+                                print('\033[1;31mAction terminated, returning to menu\033[0m')
                                 updateCustomer()
                             newId = input("Enter the new ID.\n>>> ")
 
@@ -170,9 +150,9 @@ def CSS1():
                     
                     def changeLicense():
                         while True:
-                            currentLicenseName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentLicenseName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to return to menu (Name is case sensitive).\n>>> ")
                             if currentLicenseName.lower() in ['q']:
-                                print('\033[1;31mAction terminated, going back to menu\033[0m')
+                                print('\033[1;31mAction terminated, returning to menu\033[0m')
                                 updateCustomer()
                             newLicense = input("Enter the new License.\n>>> ")
 
@@ -213,9 +193,9 @@ def CSS1():
                     
                     def changeAddress():
                         while True:
-                            currentAddressName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentAddressName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to return to menu (Name is case sensitive).\n>>> ")
                             if currentAddressName.lower() in ['q']:
-                                print('\033[1;31mAction terminated, going back to menu\033[0m')
+                                print('\033[1;31mAction terminated, returning to menu\033[0m')
                                 updateCustomer()
                             newAddress = input("Enter the new Address.\n>>> ")
 
@@ -256,9 +236,9 @@ def CSS1():
                     
                     def changeContact():
                         while True:
-                            currentContactName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to exit to main menu (Name is case sensitive).\n>>> ")
+                            currentContactName = input("Enter the customer's name you wish to update. Type '\033[1;31mq\033[0m' to return to menu (Name is case sensitive).\n>>> ")
                             if currentContactName.lower() in ['q']:
-                                print('\033[1;31mAction terminated, going back to menu\033[0m')
+                                print('\033[1;31mAction terminated, returning to menu\033[0m')
                                 updateCustomer()
                             newContact = input("Enter the new Contact.\n>>> ")
 
@@ -297,15 +277,15 @@ def CSS1():
                                     print(updateMenu)
                                     return
                     
-                    updateMenu = '''\033[1mCar Rental System | Customer Detail | Update Customer Detail            \033[0;31m[q] Logout\033[0m\n
+                    updateMenu = '''\033[1mCar Rental System | Customer Detail | Update customer details           \033[0;31m[Q] Go back\033[0m\n
     [1] Update Customer Name
     [2] Update Customer IC/Passport
-    [3] Update Cusomter License Number
+    [3] Update Customer License Number
     [4] Update Customer Address
     [5] Update Customer Contact Number
-        
-    Enter \033[1;32m1, 2, 3, 4, 5\033[0m or \033[0;31mQ\033[0m to go back to menu\n'''
-                    
+
+    Enter \033[1;32m1, 2, 3, 4, 5\033[0m or \033[0;31mQ\033[0m to go back\n'''
+
                     print(updateMenu)
 
                     while True:
@@ -323,7 +303,7 @@ def CSS1():
                         elif updateMenuChoice == '5':
                             changeContact()
                         elif updateMenuChoice == 'q':
-                            print('\033[1;31mAction terminated, going back to menu\033[0m')
+                            print('\033[1;31mAction terminated, returning to menu\033[0m')
                             return CSS1()
                         
                 updateCustomer()
@@ -347,17 +327,17 @@ def CSS1():
                     print(f'{str(i) + "." :<4} {"   ".join(data)}')
                 
                 while True:
-                    exitMenu = input("\nEnter \'\033[1;31mX\033[0m\' \033[1mto go back to main menu.\033[0m\n>>> ")
+                    exitMenu = input("\nEnter \'\033[1;31mX\033[0m\' \033[1mto return to menu.\033[0m\n>>> ")
                     if exitMenu.lower() == 'x':
                         CSS1()
 
             elif choice == deleteCustomer:
                 return
-            
+
             elif choice == ownProfile:
-                updateOwnProfile()
+                UpdateProfile()
 
             elif choice == logout:
                 raise SystemExit("\033[1;32mYou have logged out\033[0m")
-                
+
 # Moved CSS1() to index.py, run code from there

@@ -2,7 +2,6 @@ from carServiceStaff import CarSerStaff
 from CSS1 import CSS1
 # from CSS2 import CSS2 [Work in progress]
 from Manager import Manager
-import os
 
 def index():
     loginAttempt = 3
@@ -28,11 +27,11 @@ def index():
                     elif data[2] == 'STFCUST1':
                         CSS1()
                     elif data[2] == 'STFCUST2':
-                        return # Work in progress, waiting for functions to be added
+                        return # Work in progress, waiting for function to be added
                     elif data[2] == 'STFCAR':
                         CarSerStaff()
                     else:
-                        print('Unexpected error has occured, please contact an admin to get it fixed.')
+                        print('\033[0;31m\033[1mUnexpected error has occured, please contact an admin to get it fixed.\033[0m')
                 else:
                     raise SystemExit('\033[0;31m\033[1mThere seems to be a problem with your account. Please contact an admin to get it fixed.\033[0m')
         

@@ -1,5 +1,5 @@
 import os
-from updateProfile import updateOwnProfile
+from Functions import UpdateProfile, InputDate, InputFloat
 
 def CarSerStaff():
     # Define constants
@@ -28,43 +28,9 @@ def CarSerStaff():
     [3] View registered cars
     [4] Delete disposed cars
     [5] Update own profile\n
-    Enter \033[1;32m1, 2, 3, 4, 5\033[0m or \033[0;31m{CSS_LOGOUT}\033[0m to Logout\n'''
+    Enter \033[1;32m1, 2, 3, 4, 5\033[0m or \033[0;31m{CSS_LOGOUT}\033[0m\n'''
 
     print(pageCarSerStaff)
-
-
-    def InputDate(prompt):
-        while True:
-            try:
-                date = input(prompt)
-                day, month, year = date.split('-')
-
-                if len(day) != 2 or not day.isdigit() or int(day) < 1 or int(day) > 31:
-                    print('\033[0;31;1mError: Please enter a day between 01 and 31.\033[0m')
-                    continue
-                elif len(month) != 2 or not month.isdigit() or int(month) < 1 or int(month) > 12:
-                    print('\033[0;31;1mError: Please enter a month between 01 and 12.\033[0m')
-                    continue
-                elif len(year) != 4 or not year.isdigit() or int(year) < START_YEAR or int(year) > END_YEAR:
-                    print(f'\033[0;31;1mError: Please enter a four digit year between {START_YEAR} and {END_YEAR}.\033[0m')
-                    continue
-                else:
-                    break
-            except ValueError:
-                print('\033[0;31;1mError: Please enter a date in the format of DD-MM-YYYY.\033[0m')
-        return date
-
-    def InputFloat(prompt):
-        while True:
-            try:
-                flt = float(input(prompt))
-            except ValueError:
-                print('\033[0;31;1mError: Please enter a valid float.\033[0m')
-                continue
-            else:
-                truncated_flt = format(flt, '.2f')
-                break
-        return truncated_flt
 
 
     while True:
@@ -399,10 +365,12 @@ def CarSerStaff():
 
             # Option 5 - Update own profile
             if option == CSS_PROFILE:
-                updateOwnProfile()
+                UpdateProfile()
 
             # Option q - Logout
             if option == CSS_LOGOUT:
                 raise SystemExit("\033[1;32mYou have logged out\033[0m")
 
             break
+
+# Moved CarSerStaff() to index.py, run code from there

@@ -2,7 +2,7 @@
 
 ## Files
 `index.py` Login Menu <br/>
-`updateProfile.py` updateOwnProfile() function
+`Functions.py` Custom Global Functions
 
 ###### Hussain (Manager)
 ```
