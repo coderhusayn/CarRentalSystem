@@ -70,7 +70,8 @@ def CSS1():
                 # Modify data and check for existing account IDs
                 newID = len(accounts) + 1000001
                 for account in accounts:
-                    if newID == int(account[1:8]):
+                    data = account.split(';')
+                    if newID == int(data[0][1:]):
                         newID += 1
 
                 with open('customer.txt', 'a') as customer_file:
