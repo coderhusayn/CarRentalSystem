@@ -1,6 +1,6 @@
 # Used in carServiceStaff.py and CSS1.py
 def UpdateProfile():
-    print('Please enter your username and password')
+    print('\033[1mPlease enter your current username and password\033[0m')
 
     loginAttempt = 3
 
@@ -17,17 +17,17 @@ def UpdateProfile():
 
             if userName == data[0] and userPass == data[1]:
                 while True:
-                    updateMenu = '''\033[1mPlease select what you would like to change            \033[0;31m[q] Logout\033[0m\n
-[1] Username
-[2] Password
+                    updateMenu = '''\n\033[1mPlease select what you would like to change            \033[0;31m[Q] Logout\033[0m\n
+    [1] Username
+    [2] Password
 
 >>> '''
                     updateChoice = input(updateMenu)
                     if updateChoice == '1':
-                        newUser = input("Please enter your new username\n>>> ")
+                        newUser = input("\033[1mPlease enter your new username\033[0m\n>>> ")
                         data[0] = newUser
                     elif updateChoice == '2':
-                        newPass = input("Please enter your new password\n>>> ")
+                        newPass = input("\033[1mPlease enter your new password\033[0m\n>>> ")
                         data[1] = newPass
                     elif updateChoice.lower() == 'q':
                         break
