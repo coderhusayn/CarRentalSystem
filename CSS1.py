@@ -345,13 +345,13 @@ def CSS1():
 
                 for cust in customers:
                     custData = cust.split(';')
-                    notRedundant = True
+                    active = True
                     for transactionHistory in transactionList:
                         transactionHistory = transactionHistory.split(';')
                         if custData[0] == transactionHistory[1]:
-                            notRedundant = False
+                            active = False
                             break
-                    if notRedundant:
+                    if active:
                         valid_customers.append(cust)
 
                 # Write back the valid customers to customer.txt or do whatever is needed
