@@ -42,7 +42,7 @@ def CSS1():
                 custLicense = get_input("Enter customer's license number: ")
                 custAddress = get_input("Enter customer's address: ")
                 custContact = get_input("Enter customer's contact number: ")
-                date = InputDate(f"Enter today's date: ")
+                date = InputDate("Enter today's date: ")
 
                 with open('customer.txt') as customer_file:
                     accounts = customer_file.readlines()
