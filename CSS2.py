@@ -168,8 +168,19 @@ def CSS2():
                 print("Not found")
                 CSS2()
 
-    css2_choice = input("Would you like to\n1. Rent a car\n2. Return a car\n3. Book a car\nInput a number 1, 2, or 3: ")
+    css2_choice = input("""\033[1mCar Rental System | Booking Management            \033[0;31m[Q] Logout\033[0m\n
+    [1] Rent a car
+    [2] Return a car
+    [3] Book a car
+                        
+    Enter \033[1;32m1, 2, 3\033[0m or \033[0;31mQ\033[0m
+
+>>> """)
+
     match css2_choice:
         case "1": renting()
         case "2": returning()
         case "3": booking()
+        case "q": raise SystemExit("\033[1;32mYou have logged out\033[0m")
+        case "Q": raise SystemExit("\033[1;32mYou have logged out\033[0m")
+                

@@ -21,7 +21,7 @@ def index():
 
             if userName == data[0] and userPass == data[1]:
                 if data[-1] == 'Active':
-                    print(f'\nWelcome, {data[3].title()}!')
+                    print(f'\n\033[0;32;1mWelcome, {data[3].title()}!\033[0m\n')
                     if data[2] == 'STFMAN':
                         Manager()
                     elif data[2] == 'STFCUST1':
