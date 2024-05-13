@@ -173,5 +173,3 @@ def CSS2():
         case "1": renting()
         case "2": returning()
         case "3": booking()
-
-CSS2()

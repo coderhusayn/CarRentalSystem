@@ -55,7 +55,7 @@ def CSS1():
                         newID += 1
 
                 with open('customer.txt', 'a') as customer_file:
-                    customer_file.write(f'\nC{newID};{custName};{custID};{custLicense};{custAddress};{custContact};{date}')
+                    customer_file.write(f'C{newID};{custName};{custID};{custLicense};{custAddress};{custContact};{date}\n')
                 print("\n\033[1;32mAccount succesfully created!\033[0m\n")
                 
                 CSS1()
@@ -332,7 +332,35 @@ def CSS1():
                         CSS1()
 
             elif choice == deleteCustomer:
-                return
+                # Read customer data
+                with open('customer.txt', 'r') as customerList:
+                    customers = customerList.readlines()
+
+                # Read transaction history
+                with open('transaction_history.txt', 'r') as transaction_history_list:
+                    transactionList = transaction_history_list.readlines()
+
+                # Store customers that are not redundant
+                valid_customers = []
+
+                for cust in customers:
+                    custData = cust.split(';')
+                    notRedundant = True
+                    for transactionHistory in transactionList:
+                        transactionHistory = transactionHistory.split(';')
+                        if custData[0] == transactionHistory[1]:
+                            notRedundant = False
+                            break
+                    if notRedundant:
+                        valid_customers.append(cust)
+
+                # Write back the valid customers to customer.txt or do whatever is needed
+                with open('customer.txt', 'w') as customerList:
+                    customerList.writelines(valid_customers)
+
+                print("\033[0;31;1mRedundant customer details deleted\033[0m")
+
+                CSS1()
 
             elif choice == ownProfile:
                 UpdateProfile()

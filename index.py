@@ -1,6 +1,6 @@
 from carServiceStaff import CarSerStaff
 from CSS1 import CSS1
-# from CSS2 import CSS2 [Work in progress]
+from CSS2 import CSS2
 from Manager import Manager
 
 def index():
@@ -27,7 +27,7 @@ def index():
                     elif data[2] == 'STFCUST1':
                         CSS1()
                     elif data[2] == 'STFCUST2':
-                        return # Work in progress, waiting for function to be added
+                        CSS2()
                     elif data[2] == 'STFCAR':
                         CarSerStaff()
                     else:
