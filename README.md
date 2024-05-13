@@ -18,10 +18,12 @@ customer.txt
 
 ###### Pavin (Customer Service Staff II)
 ```
+CSS2.py
+transaction_history.txt
 ```
 
 ###### Yew Shan (Car Service Staff)
 ```
-carServiceStaff.py
-car_db.txt
+CarServiceStaff.py
+cars.txt
 ```

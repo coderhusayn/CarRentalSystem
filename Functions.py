@@ -1,4 +1,4 @@
-# Used in carServiceStaff.py and CSS1.py
+# Used in CarServiceStaff.py and CSS1.py
 def UpdateProfile():
     print('\033[1mPlease enter your current username and password\033[0m')
 
@@ -53,7 +53,7 @@ def UpdateProfile():
 
 
 
-# Used in carServiceStaff.py and CSS1.py
+# Used in CarServiceStaff.py and CSS1.py
 def InputDate(prompt):
     START_YEAR = 2010
     END_YEAR = 2024
@@ -80,7 +80,7 @@ def InputDate(prompt):
 
 
 
-# Used in carServiceStaff.py
+# Used in CarServiceStaff.py
 def InputFloat(prompt):
     while True:
         try:

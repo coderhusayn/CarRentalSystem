@@ -1,7 +1,7 @@
-from carServiceStaff import CarSerStaff
+from Manager import Manager
 from CSS1 import CSS1
 from CSS2 import CSS2
-from Manager import Manager
+from CarServiceStaff import CarSerStaff
 
 def index():
     loginAttempt = 3

@@ -3,7 +3,7 @@ def CSS2():
         print("Customer requirements for car")
         brand = input("Enter desired brand of car: ")
         model = input("Enter desired model of car: ")
-        with open("car_db.txt", "r") as car_db:
+        with open("cars.txt", "r") as car_db:
             car_db = car_db.readlines()
             cars = []
             for i in range(len(car_db)):
@@ -47,7 +47,7 @@ def CSS2():
                                     cars_written = []
                                     for x in range(len(cars)):
                                         cars_written.append(";".join(cars[x]))
-                                    with open("car_db.txt", "w") as car_db_w:
+                                    with open("cars.txt", "w") as car_db_w:
                                         car_db_w.writelines(cars_written)
                             if not idfound:
                                 print("Customer Not Found")
@@ -63,7 +63,7 @@ def CSS2():
         print("Which car are you returning")
         brand = input("Enter brand of car: ")
         model = input("Enter model of car: ")
-        with open("car_db.txt", "r") as car_db:
+        with open("cars.txt", "r") as car_db:
             car_db = car_db.readlines()
             cars = []
             for i in range(len(car_db)):
@@ -94,7 +94,7 @@ def CSS2():
                                     cars_written = []
                                     for x in range(len(cars)):
                                         cars_written.append(";".join(cars[x]))
-                                    with open("car_db.txt", "w") as car_db_w:
+                                    with open("cars.txt", "w") as car_db_w:
                                         car_db_w.writelines(cars_written)
                                     print("Car returned.")
                             if not idfound:
@@ -111,7 +111,7 @@ def CSS2():
         print("Customer requirements for car")
         brand = input("Enter desired brand of car: ")
         model = input("Enter desired model of car: ")
-        with open("car_db.txt", "r") as car_db:
+        with open("cars.txt", "r") as car_db:
             car_db = car_db.readlines()
             cars = []
             for i in range(len(car_db)):
@@ -156,7 +156,7 @@ def CSS2():
                                     cars_written = []
                                     for x in range(len(cars)):
                                         cars_written.append(";".join(cars[x]))
-                                    with open("car_db.txt", "w") as car_db_w:
+                                    with open("cars.txt", "w") as car_db_w:
                                         car_db_w.writelines(cars_written)
                             if not idfound:
                                 print("Customer Not Found")

@@ -84,7 +84,7 @@ def CarSerStaff():
                     rent_end_date = 'null'                  # To be filled by Customer Service Staff II (null by default)
 
                     try:
-                        with open('car_db.txt', mode='a') as file: # 'a' - open a file for appending the text or creates a new file if the file does not exist
+                        with open('cars.txt', mode='a') as file: # 'a' - open a file for appending the text or creates a new file if the file does not exist
                             file.write(f'{registration_no};{manufacturer};{model};{year_of_manufacture};{seating_capacity};{last_service_date};{insurance_policy_no};{insurance_expiry_date};{road_tax_expiry_date};{rent_rate};{rent_availability};{rent_start_date};{rent_end_date}\n')
 
                         print('\033[0;33mSuccessfully registered a new car in the system.\033[0m\n')
@@ -128,7 +128,7 @@ def CarSerStaff():
                             if option == CSS_UPDATE_INSNUM:
 
                                 def UpdateInsNum():
-                                    with open('car_db.txt', mode='r') as file:
+                                    with open('cars.txt', mode='r') as file:
                                         data = file.readlines()
 
                                     for i in range(len(data)):
@@ -141,7 +141,7 @@ def CarSerStaff():
                                             details[6] = newInsNum
                                             data[i] = ';'.join(details)
 
-                                    with open('car_db.txt', mode='w') as file:
+                                    with open('cars.txt', mode='w') as file:
                                         file.writelines(data)
 
                                     return UpdateOptions(export_registration_no)
@@ -152,7 +152,7 @@ def CarSerStaff():
                             if option == CSS_UPDATE_INSDTE:
 
                                 def UpdateInsDte():
-                                    with open('car_db.txt', mode='r') as file:
+                                    with open('cars.txt', mode='r') as file:
                                         data = file.readlines()
 
                                     for i in range(len(data)):
@@ -164,7 +164,7 @@ def CarSerStaff():
                                             details[7] = newInsDte
                                             data[i] = ';'.join(details)
 
-                                    with open('car_db.txt', mode='w') as file:
+                                    with open('cars.txt', mode='w') as file:
                                         file.writelines(data)
 
                                     return UpdateOptions(export_registration_no)
@@ -175,7 +175,7 @@ def CarSerStaff():
                             if option == CSS_UPDATE_TAXDTE:
 
                                 def UpdateTaxDte():
-                                    with open('car_db.txt', mode='r') as file:
+                                    with open('cars.txt', mode='r') as file:
                                         data = file.readlines()
 
                                     for i in range(len(data)):
@@ -187,7 +187,7 @@ def CarSerStaff():
                                             details[8] = newTaxDte
                                             data[i] = ';'.join(details)
 
-                                    with open('car_db.txt', mode='w') as file:
+                                    with open('cars.txt', mode='w') as file:
                                         file.writelines(data)
 
                                     return UpdateOptions(export_registration_no)
@@ -198,7 +198,7 @@ def CarSerStaff():
                             if option == CSS_UPDATE_RTLDAY:
 
                                 def UpdateRtlDay():
-                                    with open('car_db.txt', mode='r') as file:
+                                    with open('cars.txt', mode='r') as file:
                                         data = file.readlines()
 
                                     for i in range(len(data)):
@@ -210,7 +210,7 @@ def CarSerStaff():
                                             details[9] = newRtlDay
                                             data[i] = ';'.join(details)
 
-                                    with open('car_db.txt', mode='w') as file:
+                                    with open('cars.txt', mode='w') as file:
                                         file.writelines(data)
 
                                     return UpdateOptions(export_registration_no)
@@ -223,7 +223,7 @@ def CarSerStaff():
                                 def UpdateRtlAvl():
                                     statusDict = {'1': 'Available', '2': 'Reserved', '3': 'Rented', '4': 'Under Service', '5': 'Disposed'}
 
-                                    with open('car_db.txt', mode='r') as file:
+                                    with open('cars.txt', mode='r') as file:
                                         data = [line.split(';') for line in file.readlines()]
 
                                     for details in data:
@@ -246,7 +246,7 @@ def CarSerStaff():
                                                 else:
                                                     print('\033[0;31;1mError: Please enter 1, 2, 3, 4, or 5 as an option.\033[0m')
 
-                                    with open('car_db.txt', mode='w') as file:
+                                    with open('cars.txt', mode='w') as file:
                                         file.writelines(';'.join(details) for details in data)
 
                                     return UpdateOptions(export_registration_no)
@@ -264,7 +264,7 @@ def CarSerStaff():
                     print('\033[1mEnter a car registration number:\033[0m')
 
                     try:
-                        with open('car_db.txt', mode='r') as file:
+                        with open('cars.txt', mode='r') as file:
                             lines = file.readlines()
                             result = []
 
@@ -294,7 +294,7 @@ def CarSerStaff():
 
                 def CarView():
                     try:
-                        with open('car_db.txt', mode='r') as file:
+                        with open('cars.txt', mode='r') as file:
                             pageCarView = f'''\033[1mList of Registered Cars                        \033[0;33m[{CSS_BACK}] Go back\033[0m\n
     \033[1mRegistration No.     Manufacturer         Model                Manufacture Year     Seating Capacity     Last Service         Ins. Policy No.      Ins. Expiry          Road Tax Expiry      Rent Rate            Rent Availibility    Rent Start           Rent End\033[0m\n'''
 
@@ -338,11 +338,11 @@ def CarSerStaff():
                         else:
                             if option == 'DELETE':
                                 try:
-                                    with open('car_db.txt', mode='r') as file:
+                                    with open('cars.txt', mode='r') as file:
                                         data = file.readlines()
                                         notDisposedData = [line for line in data if not line.split(';')[10] == 'Disposed']
 
-                                    with open('car_db.txt', mode='w') as file:
+                                    with open('cars.txt', mode='w') as file:
                                         file.writelines(notDisposedData)
 
                                     print('\033[0;33mSuccessfully removed disposed cars from the system.\033[0m\n')
