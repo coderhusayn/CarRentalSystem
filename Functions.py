@@ -89,6 +89,6 @@ def InputFloat(prompt):
             print('\033[0;31;1mError: Please enter a valid float.\033[0m')
             continue
         else:
-            truncated_flt = format(flt, '.2f')
+            truncatedFlt = format(flt, '.2f')
             break
-    return truncated_flt
+    return truncatedFlt
