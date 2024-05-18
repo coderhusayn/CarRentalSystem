@@ -1,7 +1,7 @@
 from Functions import UpdateProfile, InputDate, InputFloat
 
 def CarSerStaff():
-    # Define constants
+    # Constants: Variable values which cannot be altered after initialisation
     CSS_REGISTER = '1'
     CSS_UPDATE = '2'
     CSS_VIEW = '3'
@@ -84,7 +84,8 @@ def CarSerStaff():
                     rent_end_date = 'null'                  # To be filled by Customer Service Staff II (null by default)
 
                     try:
-                        with open('cars.txt', mode='a') as file: # 'a' - open a file for appending the text or creates a new file if the file does not exist
+                        # Append Mode: Open a file for text appending or creates a new file if the file does not exist
+                        with open('cars.txt', mode='a') as file:
                             file.write(f'{registration_no};{manufacturer};{model};{year_of_manufacture};{seating_capacity};{last_service_date};{insurance_policy_no};{insurance_expiry_date};{road_tax_expiry_date};{rent_rate};{rent_availability};{rent_start_date};{rent_end_date}\n')
 
                         print('\033[0;33mSuccessfully registered a new car in the system.\033[0m\n')
@@ -221,9 +222,11 @@ def CarSerStaff():
                             if option == CSS_UPDATE_RTLAVL:
 
                                 def UpdateRtlAvl():
+                                    # Dictionary: Stores data in key-value pairs
                                     statusDict = {'1': 'Available', '2': 'Reserved', '3': 'Rented', '4': 'Under Service', '5': 'Disposed'}
 
                                     with open('cars.txt', mode='r') as file:
+                                        # List Comprehension: Create a list of lists, where each sublist represents a line from the file, split by semicolons
                                         data = [line.split(';') for line in file.readlines()]
 
                                     for details in data:
@@ -305,6 +308,7 @@ def CarSerStaff():
                                 formatted_data = ' '.join(f'{item:<20}' for item in data)
                                 print(f"{str(i) + '.' :<3} {formatted_data}")
 
+                            # Change the ending character to an empty string instead of a newline 
                             print('\n', end='')
 
                             while True:
@@ -340,6 +344,7 @@ def CarSerStaff():
                                 try:
                                     with open('cars.txt', mode='r') as file:
                                         data = file.readlines()
+                                        # List Comprehension: Goes through each line in data, splits into parts using semicolon, check if index 10 is not 'Disposed' to add into the new list
                                         notDisposedData = [line for line in data if not line.split(';')[10] == 'Disposed']
 
                                     with open('cars.txt', mode='w') as file:
