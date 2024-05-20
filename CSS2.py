@@ -2,7 +2,6 @@ def CSS2():
     def renting():
         print("Customer requirements for car")
         brand = input("Enter desired brand of car: ")
-        model = input("Enter desired model of car: ")
         with open("cars.txt", "r") as car_db:
             car_db = car_db.readlines()
             cars = []
@@ -65,7 +64,6 @@ def CSS2():
     def returning():
         print("Which car are you returning")
         brand = input("Enter brand of car: ")
-        model = input("Enter model of car: ")
         with open("cars.txt", "r") as car_db:
             car_db = car_db.readlines()
             cars = []
@@ -116,7 +114,6 @@ def CSS2():
     def booking():
         print("Customer requirements for car")
         brand = input("Enter desired brand of car: ")
-        model = input("Enter desired model of car: ")
         with open("cars.txt", "r") as car_db:
             car_db = car_db.readlines()
             cars = []
@@ -166,7 +163,7 @@ def CSS2():
                                         car_db_w.writelines(cars_written)
 
                                     CSS2()
-                                    
+
                             if not idfound:
                                 print("Customer Not Found")
                                 CSS2()
