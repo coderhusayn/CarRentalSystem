@@ -350,7 +350,6 @@ def CSS1():
                         transactionHistory = transactionHistory.split(';')
                         if custData[0] == transactionHistory[1]:
                             active = False
-                            break
                     if active:
                         valid_customers.append(cust)
 
