@@ -49,6 +49,9 @@ def CSS2():
                                         cars_written.append(";".join(cars[x]))
                                     with open("cars.txt", "w") as car_db_w:
                                         car_db_w.writelines(cars_written)
+                                    
+                                    CSS2()
+
                             if not idfound:
                                 print("Customer Not Found")
                                 CSS2()
@@ -97,6 +100,9 @@ def CSS2():
                                     with open("cars.txt", "w") as car_db_w:
                                         car_db_w.writelines(cars_written)
                                     print("Car returned.")
+
+                                    CSS2()
+
                             if not idfound:
                                 print("Customer Not Found")
                                 CSS2()
@@ -158,6 +164,9 @@ def CSS2():
                                         cars_written.append(";".join(cars[x]))
                                     with open("cars.txt", "w") as car_db_w:
                                         car_db_w.writelines(cars_written)
+
+                                    CSS2()
+                                    
                             if not idfound:
                                 print("Customer Not Found")
                                 CSS2()
